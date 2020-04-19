@@ -1,0 +1,34 @@
+{
+  ":configurator:resource-version": 1,
+  "com.adeptj.modules.data.jpa.internal.EntityManagerFactoryLifecycle": {
+    "persistenceUnitName": "AdeptJ_PU_MySQL",
+    "persistenceXmlLocation": "META-INF/persistence.xml",
+    "deployOnStartup": true,
+    "useExceptionHandler": true,
+    "logQueryParameters": true,
+    "persistenceUnitTransactionType": "RESOURCE_LOCAL",
+    "sharedCacheMode": "ENABLE_SELECTIVE",
+    "validationMode": "CALLBACK",
+    "loggingLevel": "FINEST",
+    "loggers:String[]": [
+      "eclipselink.logging.level.connection",
+      "eclipselink.logging.level.jpa",
+      "eclipselink.logging.level.sequencing",
+      "eclipselink.logging.level.sql",
+      "eclipselink.logging.level.query",
+      "eclipselink.logging.level.cache",
+      "eclipselink.logging.level.transaction",
+      "eclipselink.logging.level.weaver",
+      "eclipselink.logging.level.metadata",
+      "eclipselink.logging.level.metamodel",
+      "eclipselink.logging.level.properties",
+      "eclipselink.logging.level.ddl",
+      "eclipselink.logging.level.server",
+      "eclipselink.logging.level.event",
+      "eclipselink.logging.level.misc"
+    ],
+    "ddlGenerationOutputMode": "both",
+    "ddlGeneration": "create-or-extend-tables",
+    "jpaProperties:String[]": []
+  }
+}

@@ -1,0 +1,37 @@
+{
+  ":configurator:resource-version": 1,
+  "com.adeptj.modules.jaxrs.resteasy.internal.ResteasyLifecycle": {
+    "corsMaxAge:int": 86400,
+    "allowCredentials": true,
+    "allowedMethods:String[]": [
+      "GET",
+      "POST",
+      "PUT",
+      "DELETE",
+      "OPTIONS",
+      "HEAD"
+    ],
+    "allowedHeaders:String[]": [
+      "Cache-Control",
+      "Content-Language",
+      "Content-Type",
+      "Expires",
+      "Last-Modified",
+      "Pragma"
+    ],
+    "exposedHeaders:String[]": [
+      "Content-Length",
+      "Authorization",
+      "Accept"
+    ],
+    "allowedOrigins:String[]": [
+      "*"
+    ],
+    "blacklistedProviders:String[]": [
+      "org.jboss.resteasy.plugins.providers.jackson.PatchMethodFilter",
+      "org.jboss.resteasy.plugins.validation.ValidatorContextResolver",
+      "org.jboss.resteasy.plugins.validation.ValidatorContextResolverCDI"
+    ],
+    "sendExceptionTrace": true
+  }
+}
