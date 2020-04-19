@@ -6,7 +6,7 @@
     "driverClassName": "com.mysql.cj.jdbc.Driver",
     "username": "ut",
     "password": "EclipseLink@2018",
-    "autoCommit": true,
+    "autoCommit": false,
     "connectionTimeout:long": 30000,
     "idleTimeout:long": 600000,
     "maxLifetime:long": 1800000,
