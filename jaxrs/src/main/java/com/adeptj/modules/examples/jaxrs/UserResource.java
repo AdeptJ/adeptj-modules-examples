@@ -20,22 +20,31 @@
 
 package com.adeptj.modules.examples.jaxrs;
 
+import com.adeptj.modules.cache.caffeine.Cache;
+import com.adeptj.modules.cache.caffeine.CacheService;
+import com.adeptj.modules.commons.crypto.CryptoService;
+import com.adeptj.modules.commons.crypto.PasswordEncoder;
 import com.adeptj.modules.examples.jpa.UserRepository;
 import com.adeptj.modules.examples.jpa.entity.User;
 import com.adeptj.modules.jaxrs.core.JaxRSResource;
+import com.adeptj.modules.jaxrs.core.jwt.RequiresJwt;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import javax.json.JsonObject;
+import javax.json.bind.Jsonb;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
 import java.util.List;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
@@ -50,24 +59,85 @@ public class UserResource {
 
     private final UserRepository userRepository;
 
+    private final CacheService cacheService;
+
+    private final PasswordEncoder passwordEncoder;
+
+    private final CryptoService cryptoService;
+
+    @Context
+    private Jsonb jsonb;
+
     @Activate
-    public UserResource(@Reference UserRepository userRepository) {
+    public UserResource(@Reference UserRepository userRepository,
+                        @Reference CacheService cacheService,
+                        @Reference PasswordEncoder passwordEncoder,
+                        @Reference CryptoService cryptoService) {
         this.userRepository = userRepository;
+        this.cacheService = cacheService;
+        this.passwordEncoder = passwordEncoder;
+        this.cryptoService = cryptoService;
     }
 
+    @RequiresJwt
     @GET
     @Produces(APPLICATION_JSON)
     public List<User> getUsers() {
-        List<User> users = this.userRepository.findAll(User.class);
+        final Cache<String, List<User>> cache = this.cacheService.getCache("MyCache");
+        final List<User> users = cache.get("user", o -> this.userRepository.findAll(User.class));
         return users;
+    }
+
+    @RequiresJwt
+    @Path("/verifyJwt")
+    @POST
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    public JsonObject verifyJwt(@NotNull JsonObject object) {
+        return object;
+    }
+
+    @RequiresJwt
+    @Path("/encode-password")
+    @POST
+    @Consumes(APPLICATION_FORM_URLENCODED)
+    public String encodePassword(@NotNull @FormParam("password") String password) {
+        return this.passwordEncoder.encode(password);
+    }
+
+    @RequiresJwt
+    @Path("/match-password")
+    @POST
+    @Consumes(APPLICATION_FORM_URLENCODED)
+    public boolean matchPassword(@FormParam("password") String password,
+                                 @FormParam("encodedPassword") String encodedPassword) {
+        return this.passwordEncoder.matches(password, encodedPassword);
+    }
+
+    @RequiresJwt
+    @Path("/encrypt-text")
+    @POST
+    @Consumes(APPLICATION_FORM_URLENCODED)
+    public String encryptText(@NotNull @FormParam("plainText") String plainText) {
+        return this.cryptoService.encrypt(plainText);
+    }
+
+    @RequiresJwt
+    @Path("/decrypt-text")
+    @POST
+    @Consumes(APPLICATION_FORM_URLENCODED)
+    public String decryptText(@FormParam("encryptedText") String encryptedText) {
+        return this.cryptoService.decrypt(encryptedText);
     }
 
     @Path("/create")
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public Response insertUser(@NotNull User user) {
-        User insert = this.userRepository.insert(user);
-        return Response.ok(insert).build();
+    public JsonObject insertUser(@NotNull JsonObject object) {
+        List.of("11").get(2);
+        //final User entity = this.jsonb.fromJson(object.toString(), User.class);
+        //User insert = this.userRepository.insert(entity);
+        return object;//Response.ok(insert).build();
     }
 }

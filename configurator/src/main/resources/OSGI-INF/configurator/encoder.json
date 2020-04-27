@@ -1,0 +1,9 @@
+{
+  ":configurator:resource-version": 1,
+  "com.adeptj.modules.commons.crypto.internal.CompositePasswordEncoder": {
+    "bcrypt.exponential.cost": 10,
+    "pbe.key.spec.iteration.count": 150000,
+    "pbe.key.length": 256,
+    "password.encoding.method": "BCrypt"
+  }
+}
