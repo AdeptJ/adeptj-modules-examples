@@ -3,8 +3,6 @@ package com.adeptj.modules.examples.jpa;
 import com.adeptj.modules.data.jpa.PersistenceInfoProvider;
 import org.osgi.service.component.annotations.Component;
 
-import java.util.Map;
-
 @Component
 public class ConsumerPersistenceInfoProvider implements PersistenceInfoProvider {
 
@@ -13,8 +11,4 @@ public class ConsumerPersistenceInfoProvider implements PersistenceInfoProvider 
         return "AdeptJ_PU_MySQL";
     }
 
-    @Override
-    public Map<String, Object> getPersistenceUnitProperties() {
-        return null;
-    }
 }
