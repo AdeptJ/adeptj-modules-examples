@@ -42,6 +42,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
@@ -57,6 +58,9 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Component(service = UserResource.class)
 public class UserResource {
 
+    @Context
+    private Jsonb jsonb;
+
     private final UserRepository userRepository;
 
     private final CacheService cacheService;
@@ -64,9 +68,6 @@ public class UserResource {
     private final PasswordEncoder passwordEncoder;
 
     private final CryptoService cryptoService;
-
-    @Context
-    private Jsonb jsonb;
 
     @Activate
     public UserResource(@Reference UserRepository userRepository,
@@ -84,8 +85,7 @@ public class UserResource {
     @Produces(APPLICATION_JSON)
     public List<User> getUsers() {
         final Cache<String, List<User>> cache = this.cacheService.getCache("MyCache");
-        final List<User> users = cache.get("user", o -> this.userRepository.findAll(User.class));
-        return users;
+        return cache.get("user", o -> this.userRepository.findAll(User.class));
     }
 
     @RequiresJwt
@@ -134,10 +134,9 @@ public class UserResource {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public JsonObject insertUser(@NotNull JsonObject object) {
-        List.of("11").get(2);
-        //final User entity = this.jsonb.fromJson(object.toString(), User.class);
-        //User insert = this.userRepository.insert(entity);
-        return object;//Response.ok(insert).build();
+    public Response insertUser(@NotNull JsonObject object) {
+        User entity = this.jsonb.fromJson(object.toString(), User.class);
+        User insert = this.userRepository.insert(entity);
+        return Response.ok(insert).build();
     }
 }
