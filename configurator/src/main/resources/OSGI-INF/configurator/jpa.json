@@ -6,6 +6,7 @@
     "deployOnStartup": true,
     "useExceptionHandler": true,
     "logQueryParameters": true,
+    "queryRetryAttemptCount": 0,
     "persistenceUnitTransactionType": "RESOURCE_LOCAL",
     "sharedCacheMode": "ENABLE_SELECTIVE",
     "validationMode": "CALLBACK",
