@@ -28,13 +28,14 @@ import com.adeptj.modules.examples.jpa.UserRepository;
 import com.adeptj.modules.examples.jpa.entity.User;
 import com.adeptj.modules.jaxrs.core.JaxRSResource;
 import com.adeptj.modules.jaxrs.core.jwt.RequiresJwt;
+import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.json.JsonObject;
 import javax.json.bind.Jsonb;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -43,10 +44,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ContextResolver;
+import javax.ws.rs.ext.Providers;
 import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 
 /**
  * JAX-RS resource for issuance and verification of JWT.
@@ -57,9 +61,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Path("/api/users")
 @Component(service = UserResource.class)
 public class UserResource {
-
-    @Context
-    private Jsonb jsonb;
 
     private final UserRepository userRepository;
 
@@ -93,7 +94,7 @@ public class UserResource {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public JsonObject verifyJwt(@NotNull JsonObject object) {
+    public JsonObject verifyJwt(JsonObject object) {
         return object;
     }
 
@@ -101,7 +102,7 @@ public class UserResource {
     @Path("/encode-password")
     @POST
     @Consumes(APPLICATION_FORM_URLENCODED)
-    public String encodePassword(@NotNull @FormParam("password") String password) {
+    public String encodePassword(@NotEmpty @FormParam("password") String password) {
         return this.passwordEncoder.encode(password);
     }
 
@@ -118,7 +119,7 @@ public class UserResource {
     @Path("/encrypt-text")
     @POST
     @Consumes(APPLICATION_FORM_URLENCODED)
-    public String encryptText(@NotNull @FormParam("plainText") String plainText) {
+    public String encryptText(@NotEmpty @FormParam("plainText") String plainText) {
         return this.cryptoService.encrypt(plainText);
     }
 
@@ -134,8 +135,9 @@ public class UserResource {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public Response insertUser(@NotNull JsonObject object) {
-        User entity = this.jsonb.fromJson(object.toString(), User.class);
+    public Response insertUser(@NotNull JsonObject object, @NotNull @Context Providers providers) {
+        ContextResolver<Jsonb> resolver = providers.getContextResolver(Jsonb.class, APPLICATION_JSON_TYPE);
+        User entity = resolver.getContext(Jsonb.class).fromJson(object.toString(), User.class);
         User insert = this.userRepository.insert(entity);
         return Response.ok(insert).build();
     }
