@@ -103,7 +103,7 @@ public class UserResource {
     @POST
     @Consumes(APPLICATION_FORM_URLENCODED)
     public String encodePassword(@NotEmpty @FormParam("password") String password) {
-        return this.passwordEncoder.encode(password);
+        return this.passwordEncoder.encode(password.toCharArray());
     }
 
     @RequiresAuthentication
@@ -112,7 +112,7 @@ public class UserResource {
     @Consumes(APPLICATION_FORM_URLENCODED)
     public boolean matchPassword(@FormParam("password") String password,
                                  @FormParam("encodedPassword") String encodedPassword) {
-        return this.passwordEncoder.matches(password, encodedPassword);
+        return this.passwordEncoder.matches(password.toCharArray(), encodedPassword.toCharArray());
     }
 
     @RequiresAuthentication
