@@ -28,6 +28,7 @@ import com.adeptj.modules.examples.jpa.UserRepository;
 import com.adeptj.modules.examples.jpa.entity.User;
 import com.adeptj.modules.jaxrs.core.JaxRSResource;
 import com.adeptj.modules.jaxrs.core.RequiresAuthentication;
+import com.adeptj.modules.jaxrs.core.SecurityContextUtil;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -44,8 +45,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Providers;
+import java.security.Principal;
 import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
@@ -90,12 +93,11 @@ public class UserResource {
     }
 
     @RequiresAuthentication
-    @Path("/verifyJwt")
+    @Path("/me")
     @POST
-    @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public JsonObject verifyJwt(JsonObject object) {
-        return object;
+    public Principal me(@Context SecurityContext securityContext) {
+        return SecurityContextUtil.getJwtPrincipal(securityContext);
     }
 
     @RequiresAuthentication
