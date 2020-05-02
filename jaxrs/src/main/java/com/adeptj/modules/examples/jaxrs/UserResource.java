@@ -34,6 +34,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import javax.annotation.security.RolesAllowed;
 import javax.json.JsonObject;
 import javax.json.bind.Jsonb;
 import javax.validation.constraints.NotEmpty;
@@ -97,6 +98,14 @@ public class UserResource {
     @POST
     @Produces(APPLICATION_JSON)
     public Principal me(@Context SecurityContext securityContext) {
+        return SecurityContextUtil.getJwtPrincipal(securityContext);
+    }
+
+    @RolesAllowed({"admin", "OSGiAdmin"})
+    @Path("/me-roles-allowed")
+    @POST
+    @Produces(APPLICATION_JSON)
+    public Principal meRolesAllowed(@Context SecurityContext securityContext) {
         return SecurityContextUtil.getJwtPrincipal(securityContext);
     }
 
