@@ -1,7 +1,7 @@
 {
   ":configurator:resource-version": 1,
   "com.adeptj.modules.jaxrs.resteasy.internal.ResteasyLifecycle": {
-    "corsMaxAge:int": 86400,
+    "corsMaxAge": 86400,
     "allowCredentials": true,
     "allowedMethods:String[]": [
       "GET",
@@ -28,7 +28,6 @@
       "*"
     ],
     "blacklistedProviders:String[]": [
-      "org.jboss.resteasy.plugins.providers.jackson.PatchMethodFilter",
       "org.jboss.resteasy.plugins.validation.ValidatorContextResolver",
       "org.jboss.resteasy.plugins.validation.ValidatorContextResolverCDI"
     ],
