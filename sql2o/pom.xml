@@ -27,11 +27,11 @@
         <version>1</version>
         <relativePath></relativePath>
     </parent>
-    <artifactId>adeptj-modules-examples-jpa</artifactId>
+    <artifactId>adeptj-modules-examples-sql2o</artifactId>
     <version>1.0.0.Final</version>
     <packaging>jar</packaging>
-    <name>AdeptJ Modules :: Examples :: JPA</name>
-    <description>AdeptJ Modules :: Examples :: JPA</description>
+    <name>AdeptJ Modules :: Examples :: Sql2o</name>
+    <description>AdeptJ Modules :: Examples :: Sql2o</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -154,12 +154,6 @@
         </dependency>
 
         <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
@@ -172,27 +166,9 @@
         </dependency>
 
         <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>jakarta.persistence</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-data-jpa</artifactId>
-            <version>1.1.0.Final</version>
+            <artifactId>adeptj-modules-data-sql2o</artifactId>
+            <version>1.0.0.Final</version>
             <scope>provided</scope>
         </dependency>
 

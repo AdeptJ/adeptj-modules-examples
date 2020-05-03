@@ -61,10 +61,10 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
  *
  * @author Rakesh.Kumar, AdeptJ
  */
-@JaxRSResource(name = "users")
-@Path("/api/users")
-@Component(service = UserResource.class)
-public class UserResource {
+@JaxRSResource(name = "JpaUserResource")
+@Path("/jpa/users")
+@Component(service = JpaUserResource.class)
+public class JpaUserResource {
 
     private final UserRepository userRepository;
 
@@ -75,10 +75,10 @@ public class UserResource {
     private final CryptoService cryptoService;
 
     @Activate
-    public UserResource(@Reference UserRepository userRepository,
-                        @Reference CacheService cacheService,
-                        @Reference PasswordEncoder passwordEncoder,
-                        @Reference CryptoService cryptoService) {
+    public JpaUserResource(@Reference UserRepository userRepository,
+                           @Reference CacheService cacheService,
+                           @Reference PasswordEncoder passwordEncoder,
+                           @Reference CryptoService cryptoService) {
         this.userRepository = userRepository;
         this.cacheService = cacheService;
         this.passwordEncoder = passwordEncoder;

@@ -1,0 +1,14 @@
+{
+  ":configurator:resource-version": 1,
+  "com.adeptj.modules.data.sql2o.internal.Sql2oLifecycle": {
+    "default.column.mappings:String[]": [
+      "ID=id",
+      "FIRST_NAME=firstName",
+      "LAST_NAME=lastName",
+      "EMAIL=email",
+      "MOBILE_NO=contact",
+      "SECONDARY_MOBILE_NO=alternateContact",
+      "GOVT_ID=govtId"
+    ]
+  }
+}
