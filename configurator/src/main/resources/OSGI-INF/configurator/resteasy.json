@@ -3,7 +3,7 @@
   "com.adeptj.modules.jaxrs.resteasy.internal.ResteasyLifecycle": {
     "corsMaxAge": 86400,
     "allowCredentials": true,
-    "allowedMethods:String[]": [
+    "allowedMethods": [
       "GET",
       "POST",
       "PUT",
@@ -11,23 +11,23 @@
       "OPTIONS",
       "HEAD"
     ],
-    "allowedHeaders:String[]": [
+    "allowedHeaders": [
       "Cache-Control",
       "Content-Language",
+      "Content-Length",
       "Content-Type",
       "Expires",
       "Last-Modified",
       "Pragma"
     ],
-    "exposedHeaders:String[]": [
+    "exposedHeaders": [
       "Content-Length",
-      "Authorization",
-      "Accept"
+      "Authorization"
     ],
-    "allowedOrigins:String[]": [
+    "allowedOrigins": [
       "*"
     ],
-    "blacklistedProviders:String[]": [
+    "blacklistedProviders": [
       "org.jboss.resteasy.plugins.validation.ValidatorContextResolver",
       "org.jboss.resteasy.plugins.validation.ValidatorContextResolverCDI"
     ],

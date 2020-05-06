@@ -7,12 +7,12 @@
     "username": "ut",
     "password": "EclipseLink@2018",
     "autoCommit": false,
-    "connectionTimeout:long": 30000,
-    "idleTimeout:long": 600000,
-    "maxLifetime:long": 1800000,
-    "minimumIdle:int": 8,
-    "maximumPoolSize:int": 8,
-    "dataSourceProperties:String[]": [
+    "connectionTimeout": 30000,
+    "idleTimeout": 600000,
+    "maxLifetime": 1800000,
+    "minimumIdle": 8,
+    "maximumPoolSize": 8,
+    "dataSourceProperties": [
       "useSSL=false",
       "allowPublicKeyRetrieval=true",
       "prepStmtCacheSize=250",

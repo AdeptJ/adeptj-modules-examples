@@ -11,7 +11,7 @@
     "sharedCacheMode": "ENABLE_SELECTIVE",
     "validationMode": "CALLBACK",
     "loggingLevel": "FINEST",
-    "loggers:String[]": [
+    "eclipselinkLoggers": [
       "eclipselink.logging.level.connection",
       "eclipselink.logging.level.jpa",
       "eclipselink.logging.level.sequencing",
@@ -30,6 +30,6 @@
     ],
     "ddlGenerationOutputMode": "both",
     "ddlGeneration": "create-or-extend-tables",
-    "jpaProperties:String[]": []
+    "jpaProperties": []
   }
 }
