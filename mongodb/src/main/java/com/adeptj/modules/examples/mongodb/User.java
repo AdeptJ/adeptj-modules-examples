@@ -49,7 +49,6 @@ public class User implements BaseDocument {
 
     @ObjectId
     @JsonProperty("_id")
-    @Override
     public String getId() {
         return this.id;
     }
