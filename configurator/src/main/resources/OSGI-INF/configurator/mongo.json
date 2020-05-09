@@ -1,0 +1,12 @@
+{
+  ":configurator:resource-version": 1,
+  "com.adeptj.modules.data.mongodb.internal.MongoClientLifecycle": {
+    "server.addresses": [
+      "127.0.0.1:27017"
+    ],
+    "auth.username": "",
+    "auth.password": "",
+    "auth.database": "",
+    "tls.enabled": false
+  }
+}

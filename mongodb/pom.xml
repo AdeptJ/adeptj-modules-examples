@@ -27,15 +27,14 @@
         <version>1</version>
         <relativePath></relativePath>
     </parent>
-    <artifactId>adeptj-modules-examples-jaxrs</artifactId>
+    <artifactId>adeptj-modules-examples-mongodb</artifactId>
     <version>1.0.0.Final</version>
     <packaging>jar</packaging>
-    <name>AdeptJ Modules :: Examples :: JAX-RS</name>
-    <description>AdeptJ Modules :: Examples :: JAX-RS</description>
+    <name>AdeptJ Modules :: Examples :: MongoDB</name>
+    <description>AdeptJ Modules :: Examples :: MongoDB</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <adeptj-modules-data-jpa.version>1.1.0.Final</adeptj-modules-data-jpa.version>
     </properties>
 
     <!-- Project Information -->
@@ -155,12 +154,6 @@
         </dependency>
 
         <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
@@ -173,37 +166,12 @@
         </dependency>
 
         <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
+            <groupId>org.mongodb</groupId>
+            <artifactId>bson</artifactId>
+            <version>${mongo.version}</version>
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.ws.rs</groupId>
-            <artifactId>jakarta.ws.rs-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-data-jpa</artifactId>
-            <version>${adeptj-modules-data-jpa.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-data-sql2o</artifactId>
-            <version>1.0.0.Final</version>
-            <scope>provided</scope>
-        </dependency>
-        
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-data-mongodb</artifactId>
@@ -212,65 +180,24 @@
         </dependency>
 
         <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-jaxrs-core</artifactId>
-            <version>2.0.0.Final</version>
+            <groupId>org.mongojack</groupId>
+            <artifactId>mongojack</artifactId>
+            <version>${mongojack.version}</version>
             <scope>provided</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-examples-jpa</artifactId>
-            <version>1.0.0.Final</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-examples-sql2o</artifactId>
-            <version>1.0.0.Final</version>
-            <scope>provided</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-examples-mongodb</artifactId>
-            <version>1.0.0.Final</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.json</groupId>
-            <artifactId>jakarta.json-api</artifactId>
-            <version>${jakarta.json-api.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.json.bind</groupId>
-            <artifactId>jakarta.json.bind-api</artifactId>
-            <version>${jakarta.json.bind-api.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-cache-caffeine</artifactId>
-            <version>${adeptj-modules-cache-caffeine.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-commons-crypto</artifactId>
-            <version>1.0.0.Final</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.datatype</groupId>
+                    <artifactId>com.fasterxml.jackson.core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.persistence</groupId>
+                    <artifactId>javax.persistence-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>
