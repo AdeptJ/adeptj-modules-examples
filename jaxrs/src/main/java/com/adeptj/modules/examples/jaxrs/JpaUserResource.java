@@ -95,7 +95,7 @@ public class JpaUserResource {
 
     @RequiresAuthentication
     @Path("/me")
-    @POST
+    @GET
     @Produces(APPLICATION_JSON)
     public Principal me(@Context SecurityContext securityContext) {
         return SecurityContextUtil.getJwtPrincipal(securityContext);
