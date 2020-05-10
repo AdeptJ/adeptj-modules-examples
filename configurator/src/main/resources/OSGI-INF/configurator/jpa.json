@@ -1,7 +1,6 @@
 {
   ":configurator:resource-version": 1,
   "com.adeptj.modules.data.jpa.internal.EntityManagerFactoryLifecycle": {
-    "persistenceUnitName": "AdeptJ_PU_MySQL",
     "persistenceXmlLocation": "META-INF/persistence.xml",
     "deployOnStartup": true,
     "useExceptionHandler": true,
