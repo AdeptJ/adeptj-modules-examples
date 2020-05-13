@@ -20,8 +20,8 @@
 
 package com.adeptj.modules.examples.jaxrs;
 
-import com.adeptj.modules.cache.caffeine.Cache;
-import com.adeptj.modules.cache.caffeine.CacheService;
+import com.adeptj.modules.commons.cache.Cache;
+import com.adeptj.modules.commons.cache.CacheService;
 import com.adeptj.modules.commons.crypto.CryptoService;
 import com.adeptj.modules.commons.crypto.PasswordEncoder;
 import com.adeptj.modules.examples.jpa.UserRepository;
@@ -33,6 +33,8 @@ import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.security.RolesAllowed;
 import javax.json.JsonObject;
@@ -49,6 +51,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Providers;
+import java.lang.invoke.MethodHandles;
 import java.security.Principal;
 import java.util.List;
 
@@ -65,6 +68,8 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 @Path("/jpa/users")
 @Component(service = JpaUserResource.class)
 public class JpaUserResource {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private final UserRepository userRepository;
 
@@ -98,6 +103,7 @@ public class JpaUserResource {
     @GET
     @Produces(APPLICATION_JSON)
     public Principal me(@Context SecurityContext securityContext) {
+        LOGGER.debug("securityContext: {}", securityContext);
         return SecurityContextUtil.getJwtPrincipal(securityContext);
     }
 
