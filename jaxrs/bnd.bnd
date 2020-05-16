@@ -44,6 +44,6 @@ Import-Package: \
   
 Bundle-Name: ${project.name}
 
-Bundle-Category: AdeptJ JAX-RS
+Bundle-Category: AdeptJ Examples
 
 Bundle-Vendor: AdeptJ

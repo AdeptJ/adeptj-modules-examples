@@ -33,6 +33,6 @@ Import-Package: \
   
 Bundle-Name: ${project.name}
 
-Bundle-Category: AdeptJ Persistence Services
+Bundle-Category: AdeptJ Examples
 
 Bundle-Vendor: AdeptJ

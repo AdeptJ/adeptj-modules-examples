@@ -66,7 +66,7 @@
             </roles>
             <timezone>+5:30</timezone>
             <properties>
-                <picUrl>https://pbs.twimg.com/profile_images/946630807312928770/E18eB0ng.jpg</picUrl>
+                <picUrl>https://secure.gravatar.com/avatar/be26830472769171a96543880c651dcd</picUrl>
             </properties>
         </developer>
     </developers>
@@ -172,7 +172,6 @@
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-data-jpa</artifactId>
-            <version>${adeptj-modules-data-jpa.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -186,14 +185,12 @@
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-data-mongodb</artifactId>
-            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-jaxrs-core</artifactId>
-            <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -221,28 +218,24 @@
         <dependency>
             <groupId>jakarta.json</groupId>
             <artifactId>jakarta.json-api</artifactId>
-            <version>${jakarta.json-api.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>jakarta.json.bind</groupId>
             <artifactId>jakarta.json.bind-api</artifactId>
-            <version>${jakarta.json.bind-api.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-commons-cache</artifactId>
-            <version>${adeptj-modules-commons-cache.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-commons-crypto</artifactId>
-            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
 

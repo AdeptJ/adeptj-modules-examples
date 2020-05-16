@@ -65,7 +65,7 @@
             </roles>
             <timezone>+5:30</timezone>
             <properties>
-                <picUrl>https://pbs.twimg.com/profile_images/946630807312928770/E18eB0ng.jpg</picUrl>
+                <picUrl>https://secure.gravatar.com/avatar/be26830472769171a96543880c651dcd</picUrl>
             </properties>
         </developer>
     </developers>
@@ -147,21 +147,18 @@
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>bson</artifactId>
-            <version>${mongo.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-data-mongodb</artifactId>
-            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.mongojack</groupId>
             <artifactId>mongojack</artifactId>
-            <version>${mongojack.version}</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
