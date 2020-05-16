@@ -46,6 +46,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
@@ -93,9 +94,14 @@ public class JpaUserResource {
     @RequiresAuthentication
     @GET
     @Produces(APPLICATION_JSON)
-    public List<User> getUsers() {
-        final Cache<String, List<User>> cache = this.cacheService.getCache("MyCache");
-        return cache.get("user", o -> this.userRepository.findAll(User.class));
+    public List<User> getUsers(@QueryParam("cacheName") String cacheName) {
+        final Cache<String, List<User>> cache = this.cacheService.getCache(cacheName);
+        final List<User> users = this.userRepository.findAll(User.class);
+        cache.put("users", users);
+        LOGGER.info("Cache size before eviction {}", cache.size());
+        this.cacheService.evictCaches(cacheName);
+        LOGGER.info("Cache size after eviction {}", cache.size());
+        return users;
     }
 
     @RequiresAuthentication

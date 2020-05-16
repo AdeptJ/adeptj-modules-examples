@@ -25,10 +25,10 @@
         <groupId>com.adeptj</groupId>
         <artifactId>adeptj-modules-parent</artifactId>
         <version>1</version>
-        <relativePath></relativePath>
+        <relativePath/>
     </parent>
     <artifactId>adeptj-modules-examples-configurator</artifactId>
-    <version>1.0.0.Final</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>AdeptJ Modules :: Examples :: Configurator</name>
     <description>AdeptJ Modules :: Examples :: Configurator</description>
@@ -94,7 +94,6 @@
 
     <build>
 
-        <!-- Below BND plugin is required to process the OSGi Annotation-->
         <plugins>
 
             <plugin>
@@ -107,26 +106,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-
-            <!-- Below Maven Jar plugin is required to process MANIFEST.MF -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                    </archive>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <compilerArgument>-parameters</compilerArgument>
-                    <release>11</release>
-                </configuration>
             </plugin>
 
         </plugins>
@@ -152,7 +131,6 @@
             <artifactId>osgi.annotation</artifactId>
             <scope>provided</scope>
         </dependency>
-
 
     </dependencies>
 
