@@ -117,62 +117,47 @@
 
         <dependency>
             <groupId>org.osgi</groupId>
-            <artifactId>osgi.core</artifactId>
-            <scope>provided</scope>
+            <artifactId>org.osgi.service.component.annotations</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.osgi</groupId>
-            <artifactId>osgi.cmpn</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.annotation</artifactId>
-            <scope>provided</scope>
+            <artifactId>org.osgi.service.metatype.annotations</artifactId>
         </dependency>
 
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>jakarta.ws.rs</groupId>
             <artifactId>jakarta.ws.rs-api</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-data-jpa</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -185,13 +170,11 @@
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-data-mongodb</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-jaxrs-core</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -218,31 +201,26 @@
         <dependency>
             <groupId>jakarta.json</groupId>
             <artifactId>jakarta.json-api</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>jakarta.json.bind</groupId>
             <artifactId>jakarta.json.bind-api</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-commons-cache</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-commons-crypto</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <scope>provided</scope>
         </dependency>
 
     </dependencies>
