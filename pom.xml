@@ -34,7 +34,6 @@
 
         <module>jaxrs</module>
         <module>jpa</module>
-        <module>sql2o</module>
         <module>mongodb</module>
         <module>configurator</module>
 
