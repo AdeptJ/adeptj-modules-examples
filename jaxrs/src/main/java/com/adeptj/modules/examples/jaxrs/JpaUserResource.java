@@ -108,9 +108,10 @@ public class JpaUserResource {
     @Path("/me")
     @GET
     @Produces(APPLICATION_JSON)
-    public Principal me(@Context SecurityContext securityContext) {
-        LOGGER.debug("securityContext: {}", securityContext);
-        return SecurityContextUtil.getJwtPrincipal(securityContext);
+    public User me(@Context SecurityContext securityContext, @QueryParam("id") String id) {
+        return this.userRepository.findById(User.class, Long.parseLong(id));
+        //LOGGER.debug("securityContext: {}", securityContext);
+        //return SecurityContextUtil.getJwtPrincipal(securityContext);
     }
 
     @RolesAllowed({"admin", "OSGiAdmin"})
