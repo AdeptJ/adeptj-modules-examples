@@ -20,7 +20,7 @@
         SELECT * FROM users
     </select>
 
-    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
         insert into users (EMAIL,FIRST_NAME,LAST_NAME,MOBILE_NO) values (#{email},#{firstName},#{lastName},#{contact})
     </insert>
 

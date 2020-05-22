@@ -49,18 +49,18 @@ public class MyBatisResource {
 
     private static final String MYBATIS_CONFIG = "mybatis-config.xml";
 
-    private SqlSessionFactory sqlSessionFactory;
+    private SqlSessionFactory sessionFactory;
 
     @Activate
     public MyBatisResource(@Reference DataSourceService dataSourceService, @NotNull BundleContext context) {
-        try (InputStream configStream = context.getBundle().getEntry(MYBATIS_CONFIG).openStream()) {
+        try (InputStream stream = context.getBundle().getEntry(MYBATIS_CONFIG).openStream()) {
             Functions.executeUnderContextClassLoader(this.getClass().getClassLoader(), () -> {
-                Configuration configuration = new XMLConfigBuilder(configStream).parse();
+                Configuration configuration = new XMLConfigBuilder(stream).parse();
                 configuration.setEnvironment(new Environment.Builder("development")
                         .dataSource(dataSourceService.getDataSource())
                         .transactionFactory(new JdbcTransactionFactory())
                         .build());
-                this.sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
+                this.sessionFactory = new SqlSessionFactoryBuilder().build(configuration);
             });
         } catch (IOException ex) {
             LOGGER.error(ex.getMessage(), ex);
@@ -71,10 +71,9 @@ public class MyBatisResource {
     @GET
     @Produces(APPLICATION_JSON)
     public List<User> getUsers() {
-        try (SqlSession session = this.sqlSessionFactory.openSession()) {
-            // List<User> users = session.selectList("getUsers");
+        try (SqlSession session = this.sessionFactory.openSession()) {
+            // return session.selectList("getUsers");
             return session.getMapper(UserMapper.class).getUsers();
-            //return users;
         }
     }
 
@@ -82,9 +81,9 @@ public class MyBatisResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public User getUser(@QueryParam("id") String id) {
-        try (SqlSession session = this.sqlSessionFactory.openSession()) {
-            return session.selectOne("getUser", Long.parseLong(id));
-            // return session.getMapper(UserMapper.class).getUser(Long.parseLong(id));
+        try (SqlSession session = this.sessionFactory.openSession()) {
+            // return session.selectOne("getUser", Long.parseLong(id));
+            return session.getMapper(UserMapper.class).getUser(Long.parseLong(id));
         }
     }
 
@@ -94,9 +93,10 @@ public class MyBatisResource {
     public Response insertUser(@NotNull JsonObject object, @NotNull @Context Providers providers) {
         ContextResolver<Jsonb> resolver = providers.getContextResolver(Jsonb.class, APPLICATION_JSON_TYPE);
         User user = resolver.getContext(Jsonb.class).fromJson(object.toString(), User.class);
-        try (SqlSession session = this.sqlSessionFactory.openSession(true)) {
-            session.insert("insertUser", user);
-            // session.getMapper(UserMapper.class).insertUser(user);
+        try (SqlSession session = this.sessionFactory.openSession()) {
+            // session.insert("insertUser", user);
+            session.getMapper(UserMapper.class).insertUser(user);
+            session.commit();
             return Response.ok(user).build();
         }
     }
