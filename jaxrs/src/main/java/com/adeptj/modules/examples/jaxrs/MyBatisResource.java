@@ -25,8 +25,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
+import java.util.function.Function;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
@@ -71,20 +72,14 @@ public class MyBatisResource {
     @GET
     @Produces(APPLICATION_JSON)
     public List<User> getUsers() {
-        try (SqlSession session = this.sessionFactory.openSession()) {
-            // return session.selectList("getUsers");
-            return session.getMapper(UserMapper.class).getUsers();
-        }
+        return this.doInSession((session) -> session.getMapper(UserMapper.class).findAll());
     }
 
-    @Path("/me")
+    @Path("/me/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public User getUser(@QueryParam("id") String id) {
-        try (SqlSession session = this.sessionFactory.openSession()) {
-            // return session.selectOne("getUser", Long.parseLong(id));
-            return session.getMapper(UserMapper.class).getUser(Long.parseLong(id));
-        }
+    public User getUser(@PathParam("id") String id) {
+        return this.doInSession((session) -> session.getMapper(UserMapper.class).findById(Long.parseLong(id)));
     }
 
     @Path("/create")
@@ -94,10 +89,25 @@ public class MyBatisResource {
         ContextResolver<Jsonb> resolver = providers.getContextResolver(Jsonb.class, APPLICATION_JSON_TYPE);
         User user = resolver.getContext(Jsonb.class).fromJson(object.toString(), User.class);
         try (SqlSession session = this.sessionFactory.openSession()) {
-            // session.insert("insertUser", user);
-            session.getMapper(UserMapper.class).insertUser(user);
+            session.getMapper(UserMapper.class).insert(user);
             session.commit();
             return Response.ok(user).build();
+        }
+    }
+
+    @Path("/delete/{id}")
+    @GET
+    public Response deleteUser(@PathParam("id") String id) {
+        try (SqlSession session = this.sessionFactory.openSession()) {
+            session.getMapper(UserMapper.class).deleteById(Long.parseLong(id));
+            session.commit();
+            return Response.ok().build();
+        }
+    }
+
+    private <T> T doInSession(@NotNull Function<SqlSession, T> function) {
+        try (SqlSession session = this.sessionFactory.openSession()) {
+            return function.apply(session);
         }
     }
 }

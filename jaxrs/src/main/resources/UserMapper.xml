@@ -12,15 +12,19 @@
         <result column="MOBILE_NO" property="contact"/>
     </resultMap>
 
-    <select id="getUser" resultType="User" resultMap="userMap">
+    <select id="findById" resultType="User" resultMap="userMap">
         select * from users where id = #{id}
     </select>
 
-    <select id="getUsers" resultType="User" resultMap="userMap">
+    <delete id="deleteById" >
+        delete from users where id = #{id}
+    </delete>
+
+    <select id="findAll" resultType="User" resultMap="userMap">
         SELECT * FROM users
     </select>
 
-    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into users (EMAIL,FIRST_NAME,LAST_NAME,MOBILE_NO) values (#{email},#{firstName},#{lastName},#{contact})
     </insert>
 
