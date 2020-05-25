@@ -44,7 +44,7 @@ public class MyBatisResource {
     @Produces(APPLICATION_JSON)
     public List<User> getUsers() {
         List<User> users = this.userRepository.doInSession(session ->
-                session.getMapper(UserXmlMapper.class).findAll(), false);
+                session.getMapper(UserXmlMapper.class).findAll());
         return users;
     }
 
@@ -53,7 +53,7 @@ public class MyBatisResource {
     @Produces(MediaType.APPLICATION_JSON)
     public User getUser(@PathParam("id") String id) {
         User user = this.userRepository.doInSession(session ->
-                session.getMapper(UserAnnotationMapper.class).findById(Long.parseLong(id)), false);
+                session.getMapper(UserAnnotationMapper.class).findById(Long.parseLong(id)));
         return user;
         // return this.userRepository.findById("findById", Long.parseLong(id));
     }
@@ -64,7 +64,12 @@ public class MyBatisResource {
     public Response insertUser(@NotNull JsonObject object, @NotNull @Context Providers providers) {
         ContextResolver<Jsonb> resolver = providers.getContextResolver(Jsonb.class, APPLICATION_JSON_TYPE);
         User user = resolver.getContext(Jsonb.class).fromJson(object.toString(), User.class);
-        this.userRepository.insert("insert", user);
+        this.userRepository.doInSession(session -> {
+            session.getMapper(UserXmlMapper.class).insert(user);
+            session.commit();
+            return null;
+        });
+        // this.userRepository.insert("insert", user);
         return Response.ok(user).build();
     }
 
