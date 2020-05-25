@@ -2,6 +2,7 @@ package com.adeptj.modules.examples.jaxrs;
 
 import com.adeptj.modules.examples.mybatis.MyBatisUserRepository;
 import com.adeptj.modules.examples.mybatis.UserAnnotationMapper;
+import com.adeptj.modules.examples.mybatis.UserXmlMapper;
 import com.adeptj.modules.examples.mybatis.domain.User;
 import com.adeptj.modules.jaxrs.core.JaxRSResource;
 import org.jetbrains.annotations.NotNull;
@@ -42,16 +43,17 @@ public class MyBatisResource {
     @GET
     @Produces(APPLICATION_JSON)
     public List<User> getUsers() {
-        return this.userRepository.findAll("findAll");
+        List<User> users = this.userRepository.doInSession(session ->
+                session.getMapper(UserXmlMapper.class).findAll(), false);
+        return users;
     }
 
     @Path("/me/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public User getUser(@PathParam("id") String id) {
-        User user = this.userRepository.doInSession(session -> {
-            return session.getMapper(UserAnnotationMapper.class).findById(Long.parseLong(id));
-        });
+        User user = this.userRepository.doInSession(session ->
+                session.getMapper(UserAnnotationMapper.class).findById(Long.parseLong(id)), false);
         return user;
         // return this.userRepository.findById("findById", Long.parseLong(id));
     }
