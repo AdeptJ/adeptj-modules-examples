@@ -7,6 +7,6 @@
         <typeAlias type="com.adeptj.modules.examples.jpa.entity.User" alias="User"/>
     </typeAliases>
     <mappers>
-        <mapper resource="UserMapper.xml"/>
+        <mapper resource="META-INF/UserMapper.xml"/>
     </mappers>
 </configuration>
