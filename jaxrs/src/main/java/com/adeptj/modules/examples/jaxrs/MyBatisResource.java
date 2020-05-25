@@ -1,6 +1,8 @@
 package com.adeptj.modules.examples.jaxrs;
 
-import com.adeptj.modules.examples.jpa.entity.User;
+import com.adeptj.modules.examples.mybatis.MyBatisUserRepository;
+import com.adeptj.modules.examples.mybatis.UserAnnotationMapper;
+import com.adeptj.modules.examples.mybatis.domain.User;
 import com.adeptj.modules.jaxrs.core.JaxRSResource;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
@@ -47,7 +49,11 @@ public class MyBatisResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public User getUser(@PathParam("id") String id) {
-        return this.userRepository.findById("findById", Long.parseLong(id));
+        User user = this.userRepository.doInSession(session -> {
+            return session.getMapper(UserAnnotationMapper.class).findById(Long.parseLong(id));
+        });
+        return user;
+        // return this.userRepository.findById("findById", Long.parseLong(id));
     }
 
     @Path("/create")
@@ -64,6 +70,17 @@ public class MyBatisResource {
     @GET
     public Response deleteUser(@PathParam("id") String id) {
         this.userRepository.deleteById("deleteById", Long.parseLong(id));
+        return Response.ok().build();
+    }
+
+    @Path("/update/{id}")
+    @GET
+    public Response updateUser(@PathParam("id") String id) {
+        User user = this.userRepository.findById("findById", Long.parseLong(id));
+        user.setEmail("u.johndoe@johndoe.com");
+        user.setFirstName("New John");
+        user.setLastName("New Doe");
+        this.userRepository.update("update", user);
         return Response.ok().build();
     }
 }

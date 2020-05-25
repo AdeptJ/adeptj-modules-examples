@@ -1,8 +1,8 @@
-package com.adeptj.modules.examples.jaxrs;
+package com.adeptj.modules.examples.mybatis;
 
 import com.adeptj.modules.data.mybatis.MyBatisRepository;
 import com.adeptj.modules.data.mybatis.core.AbstractMyBatisRepository;
-import com.adeptj.modules.examples.jpa.entity.User;
+import com.adeptj.modules.examples.mybatis.domain.User;
 import org.osgi.service.component.annotations.Component;
 
 @Component(service = {MyBatisUserRepository.class, MyBatisRepository.class})

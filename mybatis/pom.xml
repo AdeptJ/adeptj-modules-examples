@@ -27,11 +27,11 @@
         <version>1</version>
         <relativePath/>
     </parent>
-    <artifactId>adeptj-modules-examples-jaxrs</artifactId>
+    <artifactId>adeptj-modules-examples-mybatis</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>AdeptJ Modules :: Examples :: JAX-RS</name>
-    <description>AdeptJ Modules :: Examples :: JAX-RS</description>
+    <name>AdeptJ Modules :: Examples :: MyBatis</name>
+    <description>AdeptJ Modules :: Examples :: MyBatis</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -117,22 +117,12 @@
 
         <dependency>
             <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.framework</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.osgi</groupId>
             <artifactId>org.osgi.service.component.annotations</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.service.metatype.annotations</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
         </dependency>
 
         <dependency>
@@ -146,89 +136,13 @@
         </dependency>
 
         <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.ws.rs</groupId>
-            <artifactId>jakarta.ws.rs-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-data-jpa</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-commons-utils</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-data-mongodb</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-jaxrs-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-examples-jpa</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-examples-mybatis</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-examples-mongodb</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.json</groupId>
-            <artifactId>jakarta.json-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.json.bind</groupId>
-            <artifactId>jakarta.json.bind-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-commons-cache</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-commons-crypto</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-commons-jdbc</artifactId>
         </dependency>
 
         <dependency>

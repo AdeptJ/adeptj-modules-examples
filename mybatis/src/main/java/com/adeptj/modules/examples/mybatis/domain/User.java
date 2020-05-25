@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--  
+/*
 ###############################################################################
-#                                                                             # 
+#                                                                             #
 #    Copyright 2016, AdeptJ (http://www.adeptj.com)                           #
 #                                                                             #
 #    Licensed under the Apache License, Version 2.0 (the "License");          #
@@ -17,27 +16,64 @@
 #    limitations under the License.                                           #
 #                                                                             #
 ###############################################################################
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.adeptj</groupId>
-    <artifactId>adeptj-modules-examples</artifactId>
-    <version>1.0.0</version>
-    <packaging>pom</packaging>
-    <name>AdeptJ Modules :: Example :: Builder</name>
-    <description>AdeptJ Modules :: Example :: Builder</description>
-    <url>http://www.adeptj.com</url>
-    <inceptionYear>2016</inceptionYear>
+*/
 
-    <modules>
+package com.adeptj.modules.examples.mybatis.domain;
 
-        <module>jaxrs</module>
-        <module>jpa</module>
-        <module>mybatis</module>
-        <module>mongodb</module>
-        <module>configurator</module>
+/**
+ * User Entity
+ *
+ * @author Rakesh.Kumar, AdeptJ
+ */
+public class User {
 
-    </modules>
+    private Long id;
 
-</project>
+    private String firstName;
+
+    private String lastName;
+
+    private String email;
+
+    private String contact;
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+}

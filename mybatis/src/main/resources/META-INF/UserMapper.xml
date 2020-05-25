@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.adeptj.modules.examples.mybatis.UserXmlMapper">
+
+    <resultMap type="User" id="userMap">
+        <id column="ID" property="id" javaType="long"/>
+        <result column="EMAIL" property="email" javaType="string"/>
+        <result column="FIRST_NAME" property="firstName" javaType="string"/>
+        <result column="LAST_NAME" property="lastName" javaType="string"/>
+        <result column="MOBILE_NO" property="contact" javaType="string"/>
+    </resultMap>
+
+    <select id="findById" resultType="User" resultMap="userMap" parameterType="long">
+        select * from users where id = #{id}
+    </select>
+
+    <delete id="deleteById" parameterType="long">
+        delete from users where id = #{id}
+    </delete>
+
+    <select id="findAll" resultType="User" resultMap="userMap">
+        select * from users
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="User">
+        insert into users (EMAIL,FIRST_NAME,LAST_NAME,MOBILE_NO) values (#{email},#{firstName},#{lastName},#{contact})
+    </insert>
+
+    <update id="update" parameterType="User">
+        update users
+        <set>
+            <if test="email != null">
+                EMAIL = #{email},
+            </if>
+            <if test="firstName != null">
+                FIRST_NAME = #{firstName},
+            </if>
+            <if test="lastName != null">
+                LAST_NAME = #{lastName},
+            </if>
+            <if test="contact != null">
+                MOBILE_NO = #{contact},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>
