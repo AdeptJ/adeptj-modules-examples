@@ -32,10 +32,10 @@
 
     <modules>
 
-        <module>jaxrs</module>
         <module>jpa</module>
         <module>mybatis</module>
         <module>mongodb</module>
+        <module>jaxrs</module>
         <module>configurator</module>
 
     </modules>
