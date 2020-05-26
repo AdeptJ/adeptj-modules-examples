@@ -14,6 +14,7 @@ import javax.json.bind.Jsonb;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,9 +43,7 @@ public class MyBatisResource {
     @GET
     @Produces(APPLICATION_JSON)
     public List<User> getUsers() {
-        List<User> users = this.userRepository.doInSession(session ->
-                session.getMapper(UserXmlMapper.class).findAll());
-        return users;
+        return this.userRepository.findAll(UserXmlMapper.class);
     }
 
     @Path("/me/{id}")
@@ -67,18 +66,21 @@ public class MyBatisResource {
     @Path("/delete/{id}")
     @GET
     public Response deleteUser(@PathParam("id") String id) {
-        this.userRepository.deleteById("deleteById", Long.parseLong(id));
+        this.userRepository.deleteById(UserXmlMapper.class, Long.parseLong(id));
         return Response.ok().build();
     }
 
     @Path("/update/{id}")
-    @GET
-    public Response updateUser(@PathParam("id") String id) {
-        User user = this.userRepository.findById("findById", Long.parseLong(id));
-        user.setEmail("u.johndoe@johndoe.com");
-        user.setFirstName("New John");
-        user.setLastName("New Doe");
-        this.userRepository.update("update", user);
-        return Response.ok().build();
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateUser(@PathParam("id") String id, @NotNull JsonObject object) {
+        User user = new User();
+        user.setId(Long.parseLong(id));
+        user.setEmail(object.getString("email"));
+        user.setFirstName(object.getString("firstName"));
+        user.setLastName(object.getString("lastName"));
+        user.setContact(object.getString("contact"));
+        this.userRepository.update(UserXmlMapper.class, user);
+        return Response.ok(user).build();
     }
 }
