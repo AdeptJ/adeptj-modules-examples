@@ -48,7 +48,7 @@ public class MyBatisResource {
 
     @Path("/me/{id}")
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
     public User getUser(@PathParam("id") String id) {
         return this.userRepository.findById(UserXmlMapper.class, Long.parseLong(id));
     }
@@ -72,7 +72,8 @@ public class MyBatisResource {
 
     @Path("/update/{id}")
     @PUT
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    @Consumes(APPLICATION_JSON)
     public Response updateUser(@PathParam("id") String id, @NotNull JsonObject object) {
         User user = new User();
         user.setId(Long.parseLong(id));
