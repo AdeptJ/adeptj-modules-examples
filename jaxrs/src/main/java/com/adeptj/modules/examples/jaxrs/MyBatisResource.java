@@ -1,7 +1,6 @@
 package com.adeptj.modules.examples.jaxrs;
 
 import com.adeptj.modules.examples.mybatis.MyBatisUserRepository;
-import com.adeptj.modules.examples.mybatis.UserAnnotationMapper;
 import com.adeptj.modules.examples.mybatis.UserXmlMapper;
 import com.adeptj.modules.examples.mybatis.domain.User;
 import com.adeptj.modules.jaxrs.core.JaxRSResource;
@@ -52,10 +51,7 @@ public class MyBatisResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public User getUser(@PathParam("id") String id) {
-        User user = this.userRepository.doInSession(session ->
-                session.getMapper(UserAnnotationMapper.class).findById(Long.parseLong(id)));
-        return user;
-        // return this.userRepository.findById("findById", Long.parseLong(id));
+        return this.userRepository.findById(UserXmlMapper.class, Long.parseLong(id));
     }
 
     @Path("/create")
@@ -64,12 +60,7 @@ public class MyBatisResource {
     public Response insertUser(@NotNull JsonObject object, @NotNull @Context Providers providers) {
         ContextResolver<Jsonb> resolver = providers.getContextResolver(Jsonb.class, APPLICATION_JSON_TYPE);
         User user = resolver.getContext(Jsonb.class).fromJson(object.toString(), User.class);
-        this.userRepository.doInSession(session -> {
-            session.getMapper(UserXmlMapper.class).insert(user);
-            session.commit();
-            return null;
-        });
-        // this.userRepository.insert("insert", user);
+        this.userRepository.insert(UserXmlMapper.class, user);
         return Response.ok(user).build();
     }
 
