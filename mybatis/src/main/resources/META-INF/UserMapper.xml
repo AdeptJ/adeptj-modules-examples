@@ -11,15 +11,11 @@
         <result column="MOBILE_NO" property="contact" javaType="string"/>
     </resultMap>
 
-    <select id="findById" resultType="User" resultMap="userMap" parameterType="long">
+    <select id="findById" resultMap="userMap" parameterType="long">
         select * from users where id = #{id}
     </select>
 
-    <delete id="deleteById" parameterType="long">
-        delete from users where id = #{id}
-    </delete>
-
-    <select id="findAll" resultType="User" resultMap="userMap">
+    <select id="findAll" resultMap="userMap">
         select * from users
     </select>
 
@@ -45,5 +41,9 @@
         </set>
         where id = #{id}
     </update>
+
+    <delete id="deleteById" parameterType="long">
+        delete from users where id = #{id}
+    </delete>
 
 </mapper>
