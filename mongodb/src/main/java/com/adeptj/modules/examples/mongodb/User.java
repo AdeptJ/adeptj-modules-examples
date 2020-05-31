@@ -21,9 +21,7 @@
 package com.adeptj.modules.examples.mongodb;
 
 import com.adeptj.modules.data.mongodb.BaseDocument;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.mongojack.MongoCollection;
-import org.mongojack.ObjectId;
 
 /**
  * User Document
@@ -31,9 +29,7 @@ import org.mongojack.ObjectId;
  * @author Rakesh.Kumar, AdeptJ
  */
 @MongoCollection(name = "users")
-public class User implements BaseDocument {
-
-    private String id;
+public class User extends BaseDocument {
 
     private String firstName;
 
@@ -44,20 +40,6 @@ public class User implements BaseDocument {
     private String contact;
 
     private String alternateContact;
-
-    private String govtId;
-
-    @ObjectId
-    @JsonProperty("_id")
-    public String getId() {
-        return this.id;
-    }
-
-    @ObjectId
-    @JsonProperty("_id")
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -97,13 +79,5 @@ public class User implements BaseDocument {
 
     public void setAlternateContact(String alternateContact) {
         this.alternateContact = alternateContact;
-    }
-
-    public String getGovtId() {
-        return govtId;
-    }
-
-    public void setGovtId(String govtId) {
-        this.govtId = govtId;
     }
 }

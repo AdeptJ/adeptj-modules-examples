@@ -18,7 +18,7 @@ public class MongoUserRepository extends AbstractMongoRepository<User> {
 
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-        this.mongoCollection.find(User.class).forEach(users::add);
+        this.getMongoCollection().find(User.class).forEach(users::add);
         return users;
     }
 }
