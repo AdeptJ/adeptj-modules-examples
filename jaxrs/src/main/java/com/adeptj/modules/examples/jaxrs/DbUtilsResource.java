@@ -44,6 +44,7 @@ public class DbUtilsResource {
     @GET
     @Produces(APPLICATION_JSON)
     public List<User> getUsers() {
+        String query = "SELECT * from users";
         Map<String, String> columnMapping = new HashMap<>();
         columnMapping.put("FIRST_NAME", "firstName");
         columnMapping.put("LAST_NAME", "lastName");
@@ -51,7 +52,7 @@ public class DbUtilsResource {
         RowProcessor rowProcessor = new BasicRowProcessor(new BeanProcessor(columnMapping));
         QueryRunner queryRunner = new QueryRunner(this.dataSourceService.getDataSource());
         try {
-            return queryRunner.query("SELECT * from users", new BeanListHandler<>(User.class, rowProcessor));
+            return queryRunner.query(query, new BeanListHandler<>(User.class, rowProcessor));
         } catch (SQLException ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
