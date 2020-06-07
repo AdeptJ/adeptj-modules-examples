@@ -2,7 +2,7 @@
   ":configurator:resource-version": 1,
   "com.adeptj.modules.data.mybatis.internal.MyBatisLifecycle": {
     "config.xml.location": "META-INF/mybatis-config.xml",
-    "override.provider.xml.config": false,
+    "override.provider.config.xml.location": false,
     "disable.xml.configuration": false,
     "environment.id": "development"
   }
