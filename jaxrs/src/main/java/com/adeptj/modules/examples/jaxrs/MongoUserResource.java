@@ -57,6 +57,6 @@ public class MongoUserResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsers() {
-        return this.userRepository.findAll();
+        return this.userRepository.findMany();
     }
 }
