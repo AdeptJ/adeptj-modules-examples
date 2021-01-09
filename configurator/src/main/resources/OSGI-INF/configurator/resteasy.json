@@ -27,7 +27,7 @@
     "allowedOrigins": [
       "*"
     ],
-    "blacklistedProviders": [
+    "providerDenyList": [
       "org.jboss.resteasy.plugins.validation.ValidatorContextResolver",
       "org.jboss.resteasy.plugins.validation.ValidatorContextResolverCDI"
     ],
