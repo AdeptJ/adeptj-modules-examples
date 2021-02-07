@@ -24,7 +24,13 @@
 
 -dsannotations-options: version;minimum=1.4.0
 
-Export-Package: com.adeptj.modules.examples.jaxrs
+-includeresource: unirest-*.jar;lib:=true
+
+-exportcontents: com.adeptj.modules.examples.jaxrs, \
+                   kong.unirest; \
+                   kong.unirest.java; \
+                   kong.unirest.jackson; \
+                   kong.unirest.json;version="4.0.0"
 
 Import-Package: \
   javax.annotation;\
@@ -40,6 +46,7 @@ Import-Package: \
   com.sun.el.stream;\
   com.sun.el.util;\
   com.sun.el,\
+  !com.google.gson.internal, \
   *
   
 Bundle-Name: ${project.name}
