@@ -4,7 +4,7 @@
     "aes.key.length": 256,
     "auth.tag.length": 128,
     "pbe.key.spec.algorithm": "PBKDF2WithHmacSHA256",
-    "pbe.key.spec.iteration.count": 150000,
+    "pbe.key.spec.iteration.count": 10000,
     "crypto.key": "$[prop:crypto.key]"
   }
 }
