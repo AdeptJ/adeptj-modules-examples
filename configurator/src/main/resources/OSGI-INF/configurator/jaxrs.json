@@ -2,6 +2,7 @@
   ":configurator:resource-version": 1,
   "com.adeptj.modules.jaxrs.core.JaxRSCredentials.factory~Admin": {
     "username": "admin",
-    "password": "admin"
+    "password": "admin",
+    "roles": ["user", "admin"]
   }
 }
