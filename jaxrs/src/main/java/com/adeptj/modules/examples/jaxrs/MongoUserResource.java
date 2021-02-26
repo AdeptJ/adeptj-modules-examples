@@ -2,7 +2,7 @@ package com.adeptj.modules.examples.jaxrs;
 
 import com.adeptj.modules.examples.mongodb.MongoUserRepository;
 import com.adeptj.modules.examples.mongodb.User;
-import com.adeptj.modules.jaxrs.core.JaxRSResource;
+import com.adeptj.modules.jaxrs.api.JaxRSResource;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;

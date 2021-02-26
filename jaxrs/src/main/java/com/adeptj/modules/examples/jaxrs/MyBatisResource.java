@@ -4,7 +4,7 @@ import com.adeptj.modules.commons.utils.JsonUtil;
 import com.adeptj.modules.examples.mybatis.MyBatisUserRepository;
 import com.adeptj.modules.examples.mybatis.UserXmlMapper;
 import com.adeptj.modules.examples.mybatis.domain.User;
-import com.adeptj.modules.jaxrs.core.JaxRSResource;
+import com.adeptj.modules.jaxrs.api.JaxRSResource;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;

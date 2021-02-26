@@ -26,8 +26,7 @@ import com.adeptj.modules.commons.crypto.CryptoService;
 import com.adeptj.modules.commons.crypto.PasswordEncoder;
 import com.adeptj.modules.examples.jpa.UserRepository;
 import com.adeptj.modules.examples.jpa.entity.User;
-import com.adeptj.modules.jaxrs.core.JaxRSResource;
-import com.adeptj.modules.jaxrs.core.RequiresAuthentication;
+import com.adeptj.modules.jaxrs.api.JaxRSResource;
 import com.adeptj.modules.jaxrs.core.SecurityContextUtil;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
@@ -91,7 +90,6 @@ public class JpaUserResource {
         this.cryptoService = cryptoService;
     }
 
-    @RequiresAuthentication
     @GET
     @Produces(APPLICATION_JSON)
     public List<User> getUsers(@QueryParam("cacheName") String cacheName) {
@@ -104,7 +102,6 @@ public class JpaUserResource {
         return users;
     }
 
-    @RequiresAuthentication
     @Path("/me")
     @GET
     @Produces(APPLICATION_JSON)
@@ -122,7 +119,6 @@ public class JpaUserResource {
         return SecurityContextUtil.getJwtPrincipal(securityContext);
     }
 
-    @RequiresAuthentication
     @Path("/encode-password")
     @POST
     @Consumes(APPLICATION_FORM_URLENCODED)
@@ -130,7 +126,6 @@ public class JpaUserResource {
         return this.passwordEncoder.encode(password.toCharArray());
     }
 
-    @RequiresAuthentication
     @Path("/match-password")
     @POST
     @Consumes(APPLICATION_FORM_URLENCODED)
@@ -139,7 +134,6 @@ public class JpaUserResource {
         return this.passwordEncoder.matches(password.toCharArray(), encodedPassword.toCharArray());
     }
 
-    @RequiresAuthentication
     @Path("/encrypt-text")
     @POST
     @Consumes(APPLICATION_FORM_URLENCODED)
@@ -147,7 +141,6 @@ public class JpaUserResource {
         return this.cryptoService.encrypt(plainText);
     }
 
-    @RequiresAuthentication
     @Path("/decrypt-text")
     @POST
     @Consumes(APPLICATION_FORM_URLENCODED)

@@ -54,3 +54,5 @@ Bundle-Name: ${project.name}
 Bundle-Category: AdeptJ Examples
 
 Bundle-Vendor: AdeptJ
+
+Jaas-ModuleClass: com.adeptj.modules.examples.jaxrs.StaticLoginModule
