@@ -38,7 +38,7 @@ import static org.osgi.service.component.annotations.ReferenceCardinality.MULTIP
 import static org.osgi.service.component.annotations.ReferencePolicy.DYNAMIC;
 
 /**
- * Provides {@link JaxRSAuthenticationOutcome} by querying the data store.
+ * Provides {@link JaxRSAuthenticationOutcome} by querying the ConfigAdmin configuration based data store.
  *
  * @author Rakesh.Kumar, AdeptJ
  */
