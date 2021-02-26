@@ -27,6 +27,7 @@ import com.adeptj.modules.commons.crypto.PasswordEncoder;
 import com.adeptj.modules.examples.jpa.UserRepository;
 import com.adeptj.modules.examples.jpa.entity.User;
 import com.adeptj.modules.jaxrs.api.JaxRSResource;
+import com.adeptj.modules.jaxrs.api.RequiresAuthentication;
 import com.adeptj.modules.jaxrs.core.SecurityContextUtil;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
@@ -134,6 +135,7 @@ public class JpaUserResource {
         return this.passwordEncoder.matches(password.toCharArray(), encodedPassword.toCharArray());
     }
 
+    @RequiresAuthentication
     @Path("/encrypt-text")
     @POST
     @Consumes(APPLICATION_FORM_URLENCODED)
