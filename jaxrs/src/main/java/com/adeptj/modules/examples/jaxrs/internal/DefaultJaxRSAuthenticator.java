@@ -25,6 +25,7 @@ import com.adeptj.modules.jaxrs.api.JaxRSAuthenticator;
 import com.adeptj.modules.jaxrs.api.UsernamePasswordCredential;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,6 +73,12 @@ public class DefaultJaxRSAuthenticator implements JaxRSAuthenticator {
     }
 
     // <<------------------------------------------ OSGi INTERNAL -------------------------------------------->>
+
+    @Deactivate
+    protected void stop() {
+        this.credentials.forEach(UsernamePasswordCredential::clear);
+        this.credentials.clear();
+    }
 
     @Reference(service = JaxRSCredentialsFactory.class, cardinality = MULTIPLE, policy = DYNAMIC)
     protected void bindJaxRSCredentialsFactory(JaxRSCredentialsFactory credentialsFactory) {
