@@ -1,6 +1,6 @@
 package com.adeptj.modules.examples.jaxrs;
 
-import com.adeptj.modules.commons.utils.Jackson;
+import com.adeptj.modules.commons.utils.JacksonJsonUtil;
 import kong.unirest.Unirest;
 import kong.unirest.jackson.JacksonObjectMapper;
 import org.osgi.service.component.annotations.Activate;
@@ -14,7 +14,7 @@ public class UnirestConfigurer {
     protected void start() {
         Unirest.config()
                 .defaultBaseUrl("https://api.github.com")
-                .setObjectMapper(new JacksonObjectMapper(Jackson.objectMapper()));
+                .setObjectMapper(new JacksonObjectMapper(JacksonJsonUtil.objectMapper()));
     }
 
     @Deactivate

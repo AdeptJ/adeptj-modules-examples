@@ -1,6 +1,6 @@
 package com.adeptj.modules.examples.jaxrs;
 
-import com.adeptj.modules.commons.utils.JsonUtil;
+import com.adeptj.modules.commons.utils.JakartaJsonUtil;
 import com.adeptj.modules.examples.mybatis.MyBatisUserRepository;
 import com.adeptj.modules.examples.mybatis.UserXmlMapper;
 import com.adeptj.modules.examples.mybatis.domain.User;
@@ -51,7 +51,7 @@ public class MyBatisResource {
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
     public Response insertUser(String payload) {
-        User user = JsonUtil.deserialize(payload, User.class);
+        User user = JakartaJsonUtil.deserialize(payload, User.class);
         this.userRepository.insert(UserXmlMapper.class, user);
         return Response.ok(user).build();
     }
@@ -68,7 +68,7 @@ public class MyBatisResource {
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
     public Response updateUser(@PathParam("id") String id, String payload) {
-        User user = JsonUtil.deserialize(payload, User.class);
+        User user = JakartaJsonUtil.deserialize(payload, User.class);
         user.setId(Long.parseLong(id));
         this.userRepository.update(UserXmlMapper.class, user);
         return Response.ok(user).build();
