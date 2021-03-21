@@ -141,7 +141,9 @@
 
         <dependency>
             <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-data-mongodb</artifactId>
+            <artifactId>adeptj-modules-data-mongodb-api</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

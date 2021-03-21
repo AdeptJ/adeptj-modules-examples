@@ -20,7 +20,7 @@
 
 package com.adeptj.modules.examples.mongodb;
 
-import com.adeptj.modules.data.mongodb.BaseDocument;
+import com.adeptj.modules.data.mongodb.api.BaseDocument;
 import org.mongojack.MongoCollection;
 
 /**

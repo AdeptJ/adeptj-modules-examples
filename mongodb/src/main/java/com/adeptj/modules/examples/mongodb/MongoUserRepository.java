@@ -1,8 +1,8 @@
 package com.adeptj.modules.examples.mongodb;
 
-import com.adeptj.modules.data.mongodb.DocumentInfo;
-import com.adeptj.modules.data.mongodb.MongoRepository;
-import com.adeptj.modules.data.mongodb.core.AbstractMongoRepository;
+import com.adeptj.modules.data.mongodb.api.AbstractMongoRepository;
+import com.adeptj.modules.data.mongodb.api.DocumentInfo;
+import com.adeptj.modules.data.mongodb.api.MongoRepository;
 import org.osgi.service.component.annotations.Component;
 
 @DocumentInfo(database_name = "AdeptJ", collection_name = "users")

@@ -147,7 +147,9 @@
 
         <dependency>
             <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-data-mybatis</artifactId>
+            <artifactId>adeptj-modules-data-mybatis-api</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

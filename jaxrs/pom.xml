@@ -167,17 +167,7 @@
 
         <dependency>
             <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-data-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-commons-utils</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-data-mongodb</artifactId>
         </dependency>
 
         <dependency>
@@ -199,6 +189,11 @@
 
         <dependency>
             <groupId>com.adeptj</groupId>
+            <artifactId>adeptj-modules-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-examples-mybatis</artifactId>
             <version>1.0.0</version>
             <scope>provided</scope>
@@ -206,7 +201,21 @@
 
         <dependency>
             <groupId>com.adeptj</groupId>
+            <artifactId>adeptj-modules-data-mybatis-api</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-examples-mongodb</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adeptj</groupId>
+            <artifactId>adeptj-modules-data-mongodb-api</artifactId>
             <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
@@ -239,11 +248,6 @@
         <dependency>
             <groupId>com.adeptj</groupId>
             <artifactId>adeptj-modules-commons-jdbc</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-data-mybatis</artifactId>
         </dependency>
 
         <dependency>

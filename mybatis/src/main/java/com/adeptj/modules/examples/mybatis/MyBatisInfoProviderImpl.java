@@ -1,6 +1,6 @@
 package com.adeptj.modules.examples.mybatis;
 
-import com.adeptj.modules.data.mybatis.MyBatisInfoProvider;
+import com.adeptj.modules.data.mybatis.api.MyBatisInfoProvider;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.Set;
