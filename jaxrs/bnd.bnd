@@ -24,8 +24,6 @@
 
 -dsannotations-options: version;minimum=1.4.0
 
--includeresource: unirest-*.jar;lib:=true
-
 -exportcontents: com.adeptj.modules.examples.jaxrs, \
                    kong.unirest; \
                    kong.unirest.java; \
@@ -54,5 +52,3 @@ Bundle-Name: ${project.name}
 Bundle-Category: AdeptJ Examples
 
 Bundle-Vendor: AdeptJ
-
-Jaas-ModuleClass: com.adeptj.modules.examples.jaxrs.StaticLoginModule
