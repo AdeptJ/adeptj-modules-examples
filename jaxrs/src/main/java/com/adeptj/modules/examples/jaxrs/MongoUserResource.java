@@ -2,6 +2,8 @@ package com.adeptj.modules.examples.jaxrs;
 
 import com.adeptj.modules.examples.mongodb.MongoUserRepository;
 import com.adeptj.modules.examples.mongodb.User;
+import com.adeptj.modules.httpclient.Response;
+import com.adeptj.modules.httpclient.RestTemplate;
 import com.adeptj.modules.jaxrs.api.JaxRSResource;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
@@ -20,6 +22,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Providers;
+import java.net.URI;
 import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
@@ -32,9 +35,20 @@ public class MongoUserResource {
 
     private final MongoUserRepository userRepository;
 
+    private final RestTemplate restTemplate;
+
     @Activate
-    public MongoUserResource(@Reference MongoUserRepository userRepository) {
+    public MongoUserResource(@Reference MongoUserRepository userRepository, @Reference RestTemplate restTemplate) {
         this.userRepository = userRepository;
+        this.restTemplate = restTemplate;
+    }
+
+    @GET
+    @Path("/reqres")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getUsersFromReqResService() {
+        Response<String> response = this.restTemplate.GET(URI.create("https://reqres.in/api/users"), String.class, null);
+        return response.getContent();
     }
 
     @Path("/create")
