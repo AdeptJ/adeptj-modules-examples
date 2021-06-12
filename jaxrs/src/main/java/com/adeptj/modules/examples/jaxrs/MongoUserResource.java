@@ -2,9 +2,10 @@ package com.adeptj.modules.examples.jaxrs;
 
 import com.adeptj.modules.examples.mongodb.MongoUserRepository;
 import com.adeptj.modules.examples.mongodb.User;
-import com.adeptj.modules.httpclient.Response;
-import com.adeptj.modules.httpclient.RestClient;
 import com.adeptj.modules.jaxrs.api.JaxRSResource;
+import com.adeptj.modules.restclient.ClientRequest;
+import com.adeptj.modules.restclient.ClientResponse;
+import com.adeptj.modules.restclient.RestClient;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -46,8 +47,12 @@ public class MongoUserResource {
     @GET
     @Path("/reqres")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getUsersFromReqResService() {
-        Response<String> response = this.restClient.GET(URI.create("https://reqres.in/api/users"), String.class, null);
+    public ReqResData getUsersFromReqResService() {
+        ClientRequest<Void, ReqResData> request = ClientRequest.<Void, ReqResData>builder()
+                .uri(URI.create("https://reqres.in/api/users"))
+                .responseType(ReqResData.class)
+                .build();
+        ClientResponse<ReqResData> response = this.restClient.GET(request);
         return response.getContent();
     }
 
