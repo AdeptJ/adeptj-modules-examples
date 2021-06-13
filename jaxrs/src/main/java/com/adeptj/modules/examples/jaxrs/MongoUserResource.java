@@ -5,6 +5,7 @@ import com.adeptj.modules.examples.mongodb.User;
 import com.adeptj.modules.jaxrs.api.JaxRSResource;
 import com.adeptj.modules.restclient.api.ClientRequest;
 import com.adeptj.modules.restclient.api.ClientResponse;
+import com.adeptj.modules.restclient.api.HttpMethod;
 import com.adeptj.modules.restclient.api.RestClient;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
@@ -14,8 +15,10 @@ import org.osgi.service.component.annotations.Reference;
 import javax.json.JsonObject;
 import javax.json.bind.Jsonb;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -53,6 +56,66 @@ public class MongoUserResource {
                 .responseType(ReqResData.class)
                 .build();
         ClientResponse<ReqResData> response = this.restClient.GET(request);
+        return response.getContent();
+    }
+
+    @POST
+    @Path("/typicode")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String savePost() {
+        Post post = new Post();
+        post.setTitle("Post From AdeptJ");
+        post.setUserId("AdeptJ");
+        post.setBody("A short body");
+        ClientRequest<Post, String> request = ClientRequest.<Post, String>builder()
+                .uri(URI.create("https://jsonplaceholder.typicode.com/posts"))
+                .responseType(String.class)
+                .body(post)
+                .build();
+        ClientResponse<String> response = this.restClient.POST(request);
+        return response.getContent();
+    }
+
+    @PUT
+    @Path("/typicode")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String updatePost() {
+        Post post = new Post();
+        post.setId("1");
+        post.setTitle("Updated Title - Post From AdeptJ");
+        post.setUserId("Updated UserId - AdeptJ");
+        post.setBody("UpdatedBody - A short body");
+        ClientRequest<Post, String> request = ClientRequest.<Post, String>builder()
+                .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
+                .responseType(String.class)
+                .body(post)
+                .build();
+        ClientResponse<String> response = this.restClient.PUT(request);
+        return response.getContent();
+    }
+
+    @DELETE
+    @Path("/typicode")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String deletePost() {
+        ClientRequest<Void, String> request = ClientRequest.<Void, String>builder()
+                .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
+                .responseType(String.class)
+                .build();
+        ClientResponse<String> response = this.restClient.DELETE(request);
+        return response.getContent();
+    }
+
+    @DELETE
+    @Path("/typicode-execute-req")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String deletePostByExecuteRequest() {
+        ClientRequest<Void, String> request = ClientRequest.<Void, String>builder()
+                .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
+                .method(HttpMethod.DELETE)
+                .responseType(String.class)
+                .build();
+        ClientResponse<String> response = this.restClient.executeRequest(request);
         return response.getContent();
     }
 
