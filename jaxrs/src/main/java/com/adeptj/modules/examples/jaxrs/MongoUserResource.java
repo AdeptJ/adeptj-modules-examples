@@ -53,7 +53,7 @@ public class MongoUserResource {
     public ReqResData getUsersFromReqResService() {
         ClientRequest<Void, ReqResData> request = ClientRequest.<Void, ReqResData>builder()
                 .uri(URI.create("https://reqres.in/api/users"))
-                .responseType(ReqResData.class)
+                .responseAs(ReqResData.class)
                 .build();
         ClientResponse<ReqResData> response = this.restClient.GET(request);
         return response.getContent();
@@ -69,7 +69,7 @@ public class MongoUserResource {
         post.setBody("A short body");
         ClientRequest<Post, String> request = ClientRequest.<Post, String>builder()
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts"))
-                .responseType(String.class)
+                .responseAs(String.class)
                 .body(post)
                 .build();
         ClientResponse<String> response = this.restClient.POST(request);
@@ -87,7 +87,7 @@ public class MongoUserResource {
         post.setBody("UpdatedBody - A short body");
         ClientRequest<Post, String> request = ClientRequest.<Post, String>builder()
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
-                .responseType(String.class)
+                .responseAs(String.class)
                 .body(post)
                 .build();
         ClientResponse<String> response = this.restClient.PUT(request);
@@ -100,7 +100,7 @@ public class MongoUserResource {
     public String deletePost() {
         ClientRequest<Void, String> request = ClientRequest.<Void, String>builder()
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
-                .responseType(String.class)
+                .responseAs(String.class)
                 .build();
         ClientResponse<String> response = this.restClient.DELETE(request);
         return response.getContent();
@@ -113,7 +113,7 @@ public class MongoUserResource {
         ClientRequest<Void, String> request = ClientRequest.<Void, String>builder()
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
                 .method(HttpMethod.DELETE)
-                .responseType(String.class)
+                .responseAs(String.class)
                 .build();
         ClientResponse<String> response = this.restClient.executeRequest(request);
         return response.getContent();
