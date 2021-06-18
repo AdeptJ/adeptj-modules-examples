@@ -8,7 +8,7 @@ public class ConsumerPersistenceInfoProvider implements PersistenceInfoProvider 
 
     @Override
     public String getPersistenceUnitName() {
-        return "AdeptJ_PU_MySQL";
+        return "AdeptJ_PU";
     }
 
 }

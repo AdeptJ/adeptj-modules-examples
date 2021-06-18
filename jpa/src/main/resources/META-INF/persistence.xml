@@ -3,18 +3,7 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
 
-    <persistence-unit name="AdeptJ_PU_MySQL" transaction-type="RESOURCE_LOCAL">
-
-        <!-- JPA Entities -->
-        <class>com.adeptj.modules.examples.jpa.entity.User</class>
-        <class>com.adeptj.modules.examples.jpa.entity.Address</class>
-
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
-        <shared-cache-mode>NONE</shared-cache-mode>
-
-    </persistence-unit>
-
-    <persistence-unit name="AdeptJ_PU_PG" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="AdeptJ_PU" transaction-type="RESOURCE_LOCAL">
 
         <!-- JPA Entities -->
         <class>com.adeptj.modules.examples.jpa.entity.User</class>
