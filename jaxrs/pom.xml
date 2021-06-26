@@ -189,7 +189,8 @@
 
         <dependency>
             <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-data-jpa</artifactId>
+            <artifactId>adeptj-modules-data-jpa-base</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

@@ -2,8 +2,9 @@
   ":configurator:resource-version": 1,
   "com.adeptj.modules.data.jpa.internal.EntityManagerFactoryLifecycle": {
     "persistenceXmlLocation": "META-INF/persistence.xml",
-    "deployOnStartup": true,
+    "deployOnStartup": "true",
     "useExceptionHandler": true,
+    "exceptionHandlerFQCN": "com.adeptj.modules.data.jpa.eclipselink.extension.JpaExceptionHandler",
     "logQueryParameters": true,
     "queryRetryAttemptCount": 0,
     "persistenceUnitTransactionType": "RESOURCE_LOCAL",
@@ -27,6 +28,7 @@
       "eclipselink.logging.level.event",
       "eclipselink.logging.level.misc"
     ],
+    "eclipseLinkSLF4JLoggerFQCN": "com.adeptj.modules.data.jpa.eclipselink.extension.SLF4JLogger",
     "ddlGenerationOutputMode": "both",
     "ddlGeneration": "create-or-extend-tables",
     "jpaProperties": []
