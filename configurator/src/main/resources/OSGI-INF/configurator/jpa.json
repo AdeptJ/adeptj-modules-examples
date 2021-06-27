@@ -1,6 +1,6 @@
 {
   ":configurator:resource-version": 1,
-  "com.adeptj.modules.data.jpa.internal.EntityManagerFactoryLifecycle": {
+  "com.adeptj.modules.data.jpa.eclipselink.internal.EntityManagerFactoryLifecycle": {
     "persistenceXmlLocation": "META-INF/persistence.xml",
     "deployOnStartup": "true",
     "useExceptionHandler": true,
