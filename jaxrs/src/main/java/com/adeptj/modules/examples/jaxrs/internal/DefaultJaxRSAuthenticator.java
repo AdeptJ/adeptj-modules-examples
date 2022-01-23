@@ -81,7 +81,7 @@ public class DefaultJaxRSAuthenticator implements JaxRSAuthenticator {
     }
 
     @Reference(service = JaxRSCredentialsFactory.class, cardinality = MULTIPLE, policy = DYNAMIC)
-    protected void bindJaxRSCredentialsFactory(JaxRSCredentialsFactory credentialsFactory) {
+    protected void bindJaxRSCredentialsFactory(@NotNull JaxRSCredentialsFactory credentialsFactory) {
         UsernamePasswordCredential credential = credentialsFactory.getCredential();
         if (this.credentials.contains(credential)) {
             String username = credential.getUsername();
@@ -91,7 +91,7 @@ public class DefaultJaxRSAuthenticator implements JaxRSAuthenticator {
         this.credentials.add(credential);
     }
 
-    protected void unbindJaxRSCredentialsFactory(JaxRSCredentialsFactory credentialsFactory) {
+    protected void unbindJaxRSCredentialsFactory(@NotNull JaxRSCredentialsFactory credentialsFactory) {
         this.credentials.remove(credentialsFactory.getCredential());
     }
 }
