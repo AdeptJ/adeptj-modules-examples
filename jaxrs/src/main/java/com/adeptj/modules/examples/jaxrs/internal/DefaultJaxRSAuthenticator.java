@@ -34,7 +34,6 @@ import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static com.adeptj.modules.jaxrs.core.JaxRSConstants.ROLES;
 import static org.osgi.service.component.annotations.ReferenceCardinality.MULTIPLE;
 import static org.osgi.service.component.annotations.ReferencePolicy.DYNAMIC;
 
@@ -61,13 +60,7 @@ public class DefaultJaxRSAuthenticator implements JaxRSAuthenticator {
     public JaxRSAuthenticationOutcome authenticate(@NotNull UsernamePasswordCredential credential) {
         return this.credentials.stream()
                 .filter(credential::equals)
-                .map(sc -> {
-                    JaxRSAuthenticationOutcome authenticationOutcome = new JaxRSAuthenticationOutcome();
-                    if (sc.getRoles() != null) {
-                        authenticationOutcome.addAttribute(ROLES, sc.getRoles());
-                    }
-                    return authenticationOutcome;
-                })
+                .map(sc -> new JaxRSAuthenticationOutcome().addRolesInJwtClaim(sc.getRoles()))
                 .findFirst()
                 .orElse(null);
     }
