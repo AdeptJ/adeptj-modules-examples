@@ -60,7 +60,7 @@ public class DefaultJaxRSAuthenticator implements JaxRSAuthenticator {
     public JaxRSAuthenticationOutcome authenticate(@NotNull UsernamePasswordCredential credential) {
         return this.credentials.stream()
                 .filter(credential::equals)
-                .map(sc -> new JaxRSAuthenticationOutcome().addRolesInJwtClaim(sc.getRoles()))
+                .map(sc -> new JaxRSAuthenticationOutcome().addRolesJwtClaim(sc.getRoles()))
                 .findFirst()
                 .orElse(null);
     }
