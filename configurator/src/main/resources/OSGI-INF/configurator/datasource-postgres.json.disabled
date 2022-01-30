@@ -1,19 +1,18 @@
 {
   ":configurator:resource-version": 1,
-  "com.adeptj.modules.commons.jdbc.service.internal.HikariDataSourceService": {
-    "poolName": "AdeptJ_Pool",
-    "jdbcUrl": "jdbc:postgresql://localhost:5432/JPA",
-    "driverClassName": "org.postgresql.Driver",
-    "username": "ut",
-    "password": "EclipseLink@2018",
-    "autoCommit": false,
-    "connectionTimeout": 30000,
-    "idleTimeout": 600000,
-    "maxLifetime": 1800000,
-    "minimumIdle": 2,
-    "maximumPoolSize": 2,
-    "dataSourceProperties": [
-
+  "com.adeptj.modules.commons.jdbc.internal.HikariDataSourceService": {
+    "pool.name": "AdeptJ_Pool",
+    "jdbc.url": "jdbc:postgresql://localhost:5432/JPA",
+    "driver.class.name": "org.postgresql.Driver",
+    "db.username": "ut",
+    "db.password": "EclipseLink@2018",
+    "auto.commit": false,
+    "connection.timeout": 30000,
+    "idle.timeout": 600000,
+    "max.lifetime": 1800000,
+    "minimum.idle": 2,
+    "maximum.pool.size": 2,
+    "datasource.properties": [
     ]
   }
 }

@@ -1,6 +1,6 @@
 package com.adeptj.modules.examples.jaxrs;
 
-import com.adeptj.modules.commons.jdbc.service.DataSourceService;
+import com.adeptj.modules.commons.jdbc.DataSourceService;
 import com.adeptj.modules.examples.mybatis.domain.User;
 import com.adeptj.modules.jaxrs.api.JaxRSResource;
 import org.apache.commons.dbutils.BasicRowProcessor;

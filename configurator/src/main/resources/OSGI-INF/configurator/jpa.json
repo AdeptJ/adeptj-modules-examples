@@ -1,17 +1,17 @@
 {
   ":configurator:resource-version": 1,
   "com.adeptj.modules.data.jpa.eclipselink.internal.EntityManagerFactoryLifecycle": {
-    "persistenceXmlLocation": "META-INF/persistence.xml",
-    "deployOnStartup": "true",
-    "useExceptionHandler": true,
-    "exceptionHandlerFQCN": "com.adeptj.modules.data.jpa.eclipselink.extension.JpaExceptionHandler",
-    "logQueryParameters": true,
-    "queryRetryAttemptCount": 0,
-    "persistenceUnitTransactionType": "RESOURCE_LOCAL",
-    "sharedCacheMode": "ENABLE_SELECTIVE",
-    "validationMode": "CALLBACK",
-    "loggingLevel": "FINEST",
-    "eclipselinkLoggers": [
+    "persistence.xml.location": "META-INF/persistence.xml",
+    "deploy.on.startup": "true",
+    "use.exception.handler": true,
+    "exception.handler.fqcn": "com.adeptj.modules.data.jpa.eclipselink.extension.JpaExceptionHandler",
+    "log.query.parameters": true,
+    "query.retry.attempt.count": 0,
+    "persistence.unit.transaction.type": "RESOURCE_LOCAL",
+    "shared.cache.mode": "ENABLE_SELECTIVE",
+    "validation.mode": "CALLBACK",
+    "logging.level": "FINEST",
+    "eclipselink.loggers": [
       "eclipselink.logging.level.connection",
       "eclipselink.logging.level.jpa",
       "eclipselink.logging.level.sequencing",
@@ -28,9 +28,9 @@
       "eclipselink.logging.level.event",
       "eclipselink.logging.level.misc"
     ],
-    "eclipseLinkSLF4JLoggerFQCN": "com.adeptj.modules.data.jpa.eclipselink.extension.SLF4JLogger",
-    "ddlGenerationOutputMode": "both",
-    "ddlGeneration": "create-or-extend-tables",
-    "jpaProperties": []
+    "eclipselink.slf4j.logger.fqcn": "com.adeptj.modules.data.jpa.eclipselink.extension.SLF4JLogger",
+    "ddl.generation.output.mode": "both",
+    "ddl.generation": "create-or-extend-tables",
+    "jpa.properties": []
   }
 }
