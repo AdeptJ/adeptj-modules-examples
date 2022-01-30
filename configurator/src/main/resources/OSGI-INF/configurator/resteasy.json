@@ -1,9 +1,9 @@
 {
   ":configurator:resource-version": 1,
   "com.adeptj.modules.jaxrs.resteasy.internal.ResteasyLifecycle": {
-    "corsMaxAge": 86400,
-    "allowCredentials": true,
-    "allowedMethods": [
+    "cors.max.age": 86400,
+    "allow.credentials": true,
+    "allowed.methods": [
       "GET",
       "POST",
       "PUT",
@@ -11,7 +11,7 @@
       "OPTIONS",
       "HEAD"
     ],
-    "allowedHeaders": [
+    "allowed.headers": [
       "Cache-Control",
       "Content-Language",
       "Content-Length",
@@ -20,17 +20,18 @@
       "Last-Modified",
       "Pragma"
     ],
-    "exposedHeaders": [
+    "exposed.headers": [
       "Content-Length",
       "Authorization"
     ],
-    "allowedOrigins": [
+    "allowed.origins": [
       "*"
     ],
-    "providerDenyList": [
+    "provider.skip.list": [
       "org.jboss.resteasy.plugins.validation.ValidatorContextResolver",
       "org.jboss.resteasy.plugins.validation.ValidatorContextResolverCDI"
     ],
-    "sendExceptionTrace": true
+    "send.exception.trace": true,
+    "log.web.application.exception": true
   }
 }
