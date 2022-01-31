@@ -1,7 +1,7 @@
 {
   ":configurator:resource-version": 1,
   "com.adeptj.modules.security.jwt.internal.HmacExternalJwtVerificationService": {
-    "hmac.key": "12345678123456781234567812345678",
+    "hmac.key": "{cpe}fArGvbDq57Fyl4WLpn9ZXj7LHLQfsyLxs3wm5v2wyekWpOY2hEvNbRvzs3bAg1FS0V01vDTrztQD6vdx",
     "log.jwt.verification.exception.trace": false
   }
 }
