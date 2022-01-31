@@ -5,7 +5,7 @@
     "jdbc.url": "jdbc:postgresql://localhost:5432/JPA",
     "driver.class.name": "org.postgresql.Driver",
     "db.username": "ut",
-    "db.password": "EclipseLink@2018",
+    "db.password": "{cpe}93Jz0cOcUgC3UmItnDLj7f32p+IaNHljppdA5Ek7YqwRYByEzmIZmmMarhU=",
     "auto.commit": false,
     "connection.timeout": 30000,
     "idle.timeout": 600000,
