@@ -24,6 +24,9 @@ import com.adeptj.modules.commons.cache.Cache;
 import com.adeptj.modules.commons.cache.CacheService;
 import com.adeptj.modules.commons.crypto.CryptoService;
 import com.adeptj.modules.commons.crypto.PasswordEncoder;
+import com.adeptj.modules.commons.email.EmailInfo;
+import com.adeptj.modules.commons.email.EmailService;
+import com.adeptj.modules.commons.email.EmailType;
 import com.adeptj.modules.examples.jpa.UserRepository;
 import com.adeptj.modules.examples.jpa.entity.User;
 import com.adeptj.modules.jaxrs.api.JaxRSResource;
@@ -55,6 +58,7 @@ import javax.ws.rs.ext.Providers;
 import java.lang.invoke.MethodHandles;
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
@@ -80,15 +84,19 @@ public class JpaUserResource {
 
     private final CryptoService cryptoService;
 
+    private final EmailService emailService;
+
     @Activate
     public JpaUserResource(@Reference UserRepository userRepository,
                            @Reference CacheService cacheService,
                            @Reference PasswordEncoder passwordEncoder,
-                           @Reference CryptoService cryptoService) {
+                           @Reference CryptoService cryptoService,
+                           @Reference EmailService emailService) {
         this.userRepository = userRepository;
         this.cacheService = cacheService;
         this.passwordEncoder = passwordEncoder;
         this.cryptoService = cryptoService;
+        this.emailService = emailService;
     }
 
     @GET
@@ -159,5 +167,17 @@ public class JpaUserResource {
         User entity = resolver.getContext(Jsonb.class).fromJson(object.toString(), User.class);
         User insert = this.userRepository.insert(entity);
         return Response.ok(insert).build();
+    }
+
+    @Path("/send-email")
+    @POST
+    @Consumes(APPLICATION_FORM_URLENCODED)
+    public String sendEmail(@FormParam("message") String message, @FormParam("toAddress") String toAddress) {
+        EmailInfo info = new EmailInfo();
+        info.setSubject("Test email from AdeptJ EmailService");
+        info.setMessage(message);
+        info.setToAddresses(Set.of(toAddress));
+        this.emailService.sendEmail(EmailType.SIMPLE, info);
+        return "OK";
     }
 }

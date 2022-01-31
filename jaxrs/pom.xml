@@ -258,6 +258,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.adeptj</groupId>
+            <artifactId>adeptj-modules-commons-email</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
         </dependency>
