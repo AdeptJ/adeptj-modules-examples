@@ -56,6 +56,13 @@ public class MongoUserResource {
                 .responseAs(ReqResData.class)
                 .build();
         ClientResponse<ReqResData> response = this.restClient.GET(request);
+        this.restClient.doWithHttpClient((client) -> {
+            try {
+                client.stop();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         return response.getContent();
     }
 
