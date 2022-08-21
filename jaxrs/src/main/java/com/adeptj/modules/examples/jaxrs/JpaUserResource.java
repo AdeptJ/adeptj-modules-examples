@@ -27,6 +27,8 @@ import com.adeptj.modules.commons.crypto.PasswordEncoder;
 import com.adeptj.modules.commons.email.EmailInfo;
 import com.adeptj.modules.commons.email.EmailService;
 import com.adeptj.modules.commons.email.EmailType;
+import com.adeptj.modules.commons.utils.JakartaJsonUtil;
+import com.adeptj.modules.commons.utils.TimeUtil;
 import com.adeptj.modules.examples.jpa.UserRepository;
 import com.adeptj.modules.examples.jpa.entity.User;
 import com.adeptj.modules.jaxrs.api.JaxRSResource;
@@ -163,7 +165,23 @@ public class JpaUserResource {
     @Produces(APPLICATION_JSON)
     public Response insertUser(@NotNull String json, @NotNull @Context Providers providers) {
         ContextResolver<Jsonb> resolver = providers.getContextResolver(Jsonb.class, APPLICATION_JSON_TYPE);
-        User entity = resolver.getContext(Jsonb.class).fromJson(json, User.class);
+        Jsonb jsonb = resolver.getContext(Jsonb.class);
+        long start = System.nanoTime();
+        User entity = jsonb.fromJson(json, User.class);
+        LOGGER.info("(create) Unmarshalling took: {}", TimeUtil.elapsedMillis(start));
+        User insert = this.userRepository.insert(entity);
+        return Response.ok(insert).build();
+    }
+
+    @Path("/create1")
+    @POST
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    public Response insertUser1(@NotNull String json) {
+        long start = System.nanoTime();
+        jakarta.json.bind.Jsonb jsonb = JakartaJsonUtil.getJsonb();
+        User entity = jsonb.fromJson(json, User.class);
+        LOGGER.info("(create1) Unmarshalling took: {}", TimeUtil.elapsedMillis(start));
         User insert = this.userRepository.insert(entity);
         return Response.ok(insert).build();
     }
