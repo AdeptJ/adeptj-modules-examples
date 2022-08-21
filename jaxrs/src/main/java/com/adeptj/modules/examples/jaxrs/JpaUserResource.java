@@ -179,8 +179,7 @@ public class JpaUserResource {
     @Produces(APPLICATION_JSON)
     public Response insertUser1(@NotNull String json) {
         long start = System.nanoTime();
-        jakarta.json.bind.Jsonb jsonb = JakartaJsonUtil.getJsonb();
-        User entity = jsonb.fromJson(json, User.class);
+        User entity = JakartaJsonUtil.deserialize(json, User.class);
         LOGGER.info("(create1) Unmarshalling took: {}", TimeUtil.elapsedMillis(start));
         User insert = this.userRepository.insert(entity);
         return Response.ok(insert).build();
