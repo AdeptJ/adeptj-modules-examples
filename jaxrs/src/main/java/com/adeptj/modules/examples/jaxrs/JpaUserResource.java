@@ -40,7 +40,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.security.RolesAllowed;
-import javax.json.JsonObject;
 import javax.json.bind.Jsonb;
 import javax.validation.constraints.NotEmpty;
 import javax.ws.rs.Consumes;
@@ -162,9 +161,9 @@ public class JpaUserResource {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public Response insertUser(@NotNull JsonObject object, @NotNull @Context Providers providers) {
+    public Response insertUser(@NotNull String json, @NotNull @Context Providers providers) {
         ContextResolver<Jsonb> resolver = providers.getContextResolver(Jsonb.class, APPLICATION_JSON_TYPE);
-        User entity = resolver.getContext(Jsonb.class).fromJson(object.toString(), User.class);
+        User entity = resolver.getContext(Jsonb.class).fromJson(json, User.class);
         User insert = this.userRepository.insert(entity);
         return Response.ok(insert).build();
     }

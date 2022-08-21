@@ -12,7 +12,6 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import javax.json.JsonObject;
 import javax.json.bind.Jsonb;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -130,9 +129,9 @@ public class MongoUserResource {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public void createUser(@NotNull JsonObject object, @NotNull @Context Providers providers) {
+    public void createUser(@NotNull String json, @NotNull @Context Providers providers) {
         ContextResolver<Jsonb> resolver = providers.getContextResolver(Jsonb.class, APPLICATION_JSON_TYPE);
-        User document = resolver.getContext(Jsonb.class).fromJson(object.toString(), User.class);
+        User document = resolver.getContext(Jsonb.class).fromJson(json, User.class);
         this.userRepository.insert(document);
     }
 
