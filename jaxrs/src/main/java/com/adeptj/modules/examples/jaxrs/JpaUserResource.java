@@ -27,7 +27,6 @@ import com.adeptj.modules.commons.crypto.PasswordEncoder;
 import com.adeptj.modules.commons.email.EmailInfo;
 import com.adeptj.modules.commons.email.EmailService;
 import com.adeptj.modules.commons.email.EmailType;
-import com.adeptj.modules.commons.utils.JakartaJsonUtil;
 import com.adeptj.modules.commons.utils.JavaxJsonUtil;
 import com.adeptj.modules.commons.utils.TimeUtil;
 import com.adeptj.modules.examples.jpa.UserRepository;
@@ -182,18 +181,6 @@ public class JpaUserResource {
         long start = System.nanoTime();
         User entity = JavaxJsonUtil.deserialize(json, User.class);
         LOGGER.info("(create1 JavaxJson) Unmarshalling took: {}", TimeUtil.elapsedMillis(start));
-        User insert = this.userRepository.insert(entity);
-        return Response.ok(insert).build();
-    }
-
-    @Path("/create2")
-    @POST
-    @Consumes(APPLICATION_JSON)
-    @Produces(APPLICATION_JSON)
-    public Response insertUser2(@NotNull String json) {
-        long start = System.nanoTime();
-        User entity = JakartaJsonUtil.deserialize(json, User.class);
-        LOGGER.info("(create2 JakartaJson) Unmarshalling took: {}", TimeUtil.elapsedMillis(start));
         User insert = this.userRepository.insert(entity);
         return Response.ok(insert).build();
     }
