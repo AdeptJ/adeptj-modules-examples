@@ -3,10 +3,10 @@ package com.adeptj.modules.examples.jaxrs;
 import com.adeptj.modules.examples.mongodb.MongoUserRepository;
 import com.adeptj.modules.examples.mongodb.User;
 import com.adeptj.modules.jaxrs.api.JaxRSResource;
-import com.adeptj.modules.restclient.api.ClientRequest;
-import com.adeptj.modules.restclient.api.ClientResponse;
-import com.adeptj.modules.restclient.api.HttpMethod;
-import com.adeptj.modules.restclient.api.RestClient;
+import com.adeptj.modules.restclient.core.ClientRequest;
+import com.adeptj.modules.restclient.core.ClientResponse;
+import com.adeptj.modules.restclient.core.HttpMethod;
+import com.adeptj.modules.restclient.core.RestClient;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -55,13 +55,6 @@ public class MongoUserResource {
                 .responseAs(ReqResData.class)
                 .build();
         ClientResponse<ReqResData> response = this.restClient.GET(request);
-        this.restClient.doWithHttpClient((client) -> {
-            try {
-                client.stop();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
         return response.getContent();
     }
 

@@ -1,6 +1,6 @@
 package com.adeptj.modules.examples.jaxrs;
 
-import com.adeptj.modules.restclient.plugin.AuthorizationHeaderPlugin;
+import com.adeptj.modules.restclient.core.plugin.AuthorizationHeaderPlugin;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;

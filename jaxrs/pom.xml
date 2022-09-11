@@ -253,7 +253,7 @@
 
         <dependency>
             <groupId>com.adeptj</groupId>
-            <artifactId>adeptj-modules-incubating-restclient</artifactId>
+            <artifactId>adeptj-modules-incubating-restclient-core</artifactId>
             <version>1.0.0</version>
         </dependency>
 
@@ -286,13 +286,6 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-client</artifactId>
-            <version>${jetty-client.version}</version>
-            <scope>provided</scope>
         </dependency>
 
     </dependencies>
