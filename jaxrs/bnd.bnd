@@ -29,23 +29,6 @@
                    kong.unirest.java; \
                    kong.unirest.jackson; \
                    kong.unirest.json;version="4.0.0"
-
-Import-Package: \
-  javax.annotation;\
-  javax.annotation.sql;\
-  javax.annotation.security,\
-  javax.mail,\
-  javax.servlet;\
-  javax.servlet.http;\
-  javax.servlet.descriptor;\
-  javax.servlet.annotation,\
-  com.sun.el.parser;\
-  com.sun.el.lang;\
-  com.sun.el.stream;\
-  com.sun.el.util;\
-  com.sun.el,\
-  !com.google.gson.internal, \
-  *
   
 Bundle-Name: ${project.name}
 
