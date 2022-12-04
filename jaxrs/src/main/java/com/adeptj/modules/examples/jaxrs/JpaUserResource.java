@@ -24,16 +24,28 @@ import com.adeptj.modules.commons.cache.Cache;
 import com.adeptj.modules.commons.cache.CacheService;
 import com.adeptj.modules.commons.crypto.CryptoService;
 import com.adeptj.modules.commons.crypto.PasswordEncoder;
-import com.adeptj.modules.commons.email.EmailInfo;
-import com.adeptj.modules.commons.email.EmailService;
-import com.adeptj.modules.commons.email.EmailType;
-import com.adeptj.modules.commons.utils.JavaxJsonUtil;
+import com.adeptj.modules.commons.utils.JakartaJsonUtil;
 import com.adeptj.modules.commons.utils.TimeUtil;
 import com.adeptj.modules.examples.jpa.UserRepository;
 import com.adeptj.modules.examples.jpa.entity.User;
 import com.adeptj.modules.jaxrs.api.JaxRSResource;
 import com.adeptj.modules.jaxrs.api.RequiresAuthentication;
 import com.adeptj.modules.jaxrs.core.SecurityContextUtil;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.json.bind.Jsonb;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.FormParam;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.SecurityContext;
+import jakarta.ws.rs.ext.ContextResolver;
+import jakarta.ws.rs.ext.Providers;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -41,29 +53,13 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.security.RolesAllowed;
-import javax.json.bind.Jsonb;
-import javax.validation.constraints.NotEmpty;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.SecurityContext;
-import javax.ws.rs.ext.ContextResolver;
-import javax.ws.rs.ext.Providers;
 import java.lang.invoke.MethodHandles;
 import java.security.Principal;
 import java.util.List;
-import java.util.Set;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import static jakarta.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
+import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
+import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 
 /**
  * JAX-RS resource for issuance and verification of JWT.
@@ -85,19 +81,19 @@ public class JpaUserResource {
 
     private final CryptoService cryptoService;
 
-    private final EmailService emailService;
+    // private final EmailService emailService;
 
     @Activate
     public JpaUserResource(@Reference UserRepository userRepository,
                            @Reference CacheService cacheService,
                            @Reference PasswordEncoder passwordEncoder,
-                           @Reference CryptoService cryptoService,
-                           @Reference EmailService emailService) {
+                           @Reference CryptoService cryptoService
+            /*@Reference EmailService emailService*/) {
         this.userRepository = userRepository;
         this.cacheService = cacheService;
         this.passwordEncoder = passwordEncoder;
         this.cryptoService = cryptoService;
-        this.emailService = emailService;
+        // this.emailService = emailService;
     }
 
     @GET
@@ -179,7 +175,7 @@ public class JpaUserResource {
     @Produces(APPLICATION_JSON)
     public Response insertUser1(@NotNull String json) {
         long start = System.nanoTime();
-        User entity = JavaxJsonUtil.deserialize(json, User.class);
+        User entity = JakartaJsonUtil.deserialize(json, User.class);
         LOGGER.info("(create1 JavaxJson) Unmarshalling took: {}", TimeUtil.elapsedMillis(start));
         User insert = this.userRepository.insert(entity);
         return Response.ok(insert).build();
@@ -189,11 +185,11 @@ public class JpaUserResource {
     @POST
     @Consumes(APPLICATION_FORM_URLENCODED)
     public String sendEmail(@FormParam("message") String message, @FormParam("toAddress") String toAddress) {
-        EmailInfo info = new EmailInfo();
-        info.setSubject("Test email from AdeptJ EmailService");
-        info.setMessage(message);
-        info.setToAddresses(Set.of(toAddress));
-        this.emailService.sendEmail(EmailType.SIMPLE, info);
+        // EmailInfo info = new EmailInfo();
+        // info.setSubject("Test email from AdeptJ EmailService");
+        // info.setMessage(message);
+        // info.setToAddresses(Set.of(toAddress));
+        // this.emailService.sendEmail(EmailType.SIMPLE, info);
         return "OK";
     }
 }
