@@ -59,7 +59,6 @@ import org.slf4j.LoggerFactory;
 import java.lang.invoke.MethodHandles;
 import java.security.Principal;
 import java.util.List;
-import java.util.Set;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
@@ -189,11 +188,10 @@ public class JpaUserResource {
     @POST
     @Consumes(APPLICATION_FORM_URLENCODED)
     public String sendEmail(@FormParam("message") String message, @FormParam("toAddress") String toAddress) {
-        EmailInfo info = new EmailInfo();
-        info.setSubject("Test email from AdeptJ EmailService");
+        String subject = "Test email from AdeptJ EmailService";
+        EmailInfo info = new EmailInfo(EmailType.HTML, subject, toAddress);
         info.setMessage(message);
-        info.setToAddresses(Set.of(toAddress));
-        this.emailService.sendHtmlEmail(info);
+        this.emailService.sendEmailAsync(info);
         return "OK";
     }
 }
