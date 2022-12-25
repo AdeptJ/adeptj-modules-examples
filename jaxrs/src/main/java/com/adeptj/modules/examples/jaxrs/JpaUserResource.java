@@ -58,6 +58,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
@@ -102,13 +103,11 @@ public class JpaUserResource {
     @GET
     @Produces(APPLICATION_JSON)
     public List<User> getUsers(@QueryParam("cacheName") String cacheName) {
-        final Cache<String, List<User>> cache = this.cacheService.getCache(cacheName);
-        final List<User> users = this.userRepository.findAll(User.class);
-        cache.put("users", users);
-        LOGGER.info("Cache size before eviction {}", cache.size());
-        this.cacheService.evictCaches(cacheName);
-        LOGGER.info("Cache size after eviction {}", cache.size());
-        return users;
+        Cache<String, List<User>> cache = this.cacheService.getCache(cacheName);
+        if (cache == null) {
+            return new ArrayList<>();
+        }
+        return cache.get("users", (key) -> this.userRepository.findAll(User.class));
     }
 
     @Path("/me")
