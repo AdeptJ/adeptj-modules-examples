@@ -1,10 +1,10 @@
 {
   ":configurator:resource-version": 1,
   "com.adeptj.modules.commons.email.internal.EmailServiceImpl": {
-    "smtp.host": "$[prop:smtp.host;default=smtp.mailtrap.io]",
+    "smtp.host": "$[prop:smtp.host;default=sandbox.smtp.mailtrap.io]",
     "smtp.port": "$[prop:smtp.port;default=587;type=Integer]",
     "default.from.address": "$[prop:from.address;default=info@adeptj.com]",
-    "username": "$[prop:smtp.username]",
-    "password": "$[prop:smtp.password]"
+    "smtp.username": "$[prop:smtp.username;default=]",
+    "smtp.password": "$[prop:smtp.password;default=]"
   }
 }
