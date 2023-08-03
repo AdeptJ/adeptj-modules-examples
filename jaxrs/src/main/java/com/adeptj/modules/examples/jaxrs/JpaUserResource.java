@@ -171,6 +171,17 @@ public class JpaUserResource {
         return Response.ok(insert).build();
     }
 
+    @Path("/create-new")
+    @POST
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    public Response insertUser1(@NotNull User entity) {
+        long start = System.nanoTime();
+        LOGGER.info("(create) Unmarshalling took: {}", TimeUtil.elapsedMillis(start));
+        User insert = this.userRepository.insert(entity);
+        return Response.ok(insert).build();
+    }
+
     @Path("/create1")
     @POST
     @Consumes(APPLICATION_JSON)
@@ -188,7 +199,9 @@ public class JpaUserResource {
     @Consumes(APPLICATION_FORM_URLENCODED)
     public String sendEmail(@FormParam("message") String message, @FormParam("toAddress") String toAddress) {
         String subject = "Test email from AdeptJ EmailService";
-        EmailInfo info = new EmailInfo(EmailType.HTML, subject, toAddress);
+        EmailInfo info = new EmailInfo(EmailType.HTML, subject, toAddress, "whoami@gmail.com");
+        info.setCcAddresses("myemail@mygmail.com", "mygmail@myemail.com");
+        info.setBccAddresses("irobot1@gmail.com", "irobot2@gmail.com");
         info.setMessage(message);
         this.emailService.sendEmailAsync(info);
         return "OK";
