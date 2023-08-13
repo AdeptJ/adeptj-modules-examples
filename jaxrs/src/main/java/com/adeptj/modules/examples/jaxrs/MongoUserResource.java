@@ -143,6 +143,15 @@ public class MongoUserResource {
         this.userRepository.insert(document);
     }
 
+    @Path("/create-new")
+    @POST
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    public User createUserNew(@NotNull User document) {
+        this.userRepository.insert(document);
+        return document;
+    }
+
     @Path("/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
