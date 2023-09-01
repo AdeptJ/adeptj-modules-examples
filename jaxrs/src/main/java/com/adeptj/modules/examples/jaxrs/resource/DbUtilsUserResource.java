@@ -1,8 +1,11 @@
-package com.adeptj.modules.examples.jaxrs;
+package com.adeptj.modules.examples.jaxrs.resource;
 
 import com.adeptj.modules.commons.jdbc.DataSourceService;
 import com.adeptj.modules.examples.mybatis.domain.User;
 import com.adeptj.modules.jaxrs.api.JaxRSResource;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
 import org.apache.commons.dbutils.BasicRowProcessor;
 import org.apache.commons.dbutils.BeanProcessor;
 import org.apache.commons.dbutils.QueryRunner;
@@ -15,9 +18,6 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
 import java.lang.invoke.MethodHandles;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,15 +29,15 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @JaxRSResource(name = "DbUtilsResource")
 @Path("/dbutils/users")
-@Component(service = DbUtilsResource.class)
-public class DbUtilsResource {
+@Component(service = DbUtilsUserResource.class)
+public class DbUtilsUserResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private final DataSourceService dataSourceService;
 
     @Activate
-    public DbUtilsResource(@NotNull @Reference DataSourceService dataSourceService) {
+    public DbUtilsUserResource(@NotNull @Reference DataSourceService dataSourceService) {
         this.dataSourceService = dataSourceService;
     }
 

@@ -1,4 +1,4 @@
-package com.adeptj.modules.examples.jaxrs;
+package com.adeptj.modules.examples.jaxrs.resource;
 
 import com.adeptj.modules.commons.utils.JakartaJsonUtil;
 import com.adeptj.modules.examples.mybatis.MyBatisUserRepository;
@@ -23,13 +23,13 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @JaxRSResource(name = "MyBatisResource")
 @Path("/mybatis/users")
-@Component(service = MyBatisResource.class)
-public class MyBatisResource {
+@Component(service = MyBatisUserResource.class)
+public class MyBatisUserResource {
 
     private final MyBatisUserRepository userRepository;
 
     @Activate
-    public MyBatisResource(@Reference MyBatisUserRepository userRepository) {
+    public MyBatisUserResource(@Reference MyBatisUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -39,7 +39,7 @@ public class MyBatisResource {
         return this.userRepository.findAll(UserXmlMapper.class);
     }
 
-    @Path("/me/{id}")
+    @Path("/{id}")
     @GET
     @Produces(APPLICATION_JSON)
     public User getUser(@PathParam("id") String id) {
