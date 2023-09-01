@@ -32,7 +32,7 @@ public class MongoUserResource {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
     public List<User> getUsers() {
         return this.userRepository.findMany();
     }
