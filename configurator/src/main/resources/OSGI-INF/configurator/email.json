@@ -1,6 +1,6 @@
 {
   ":configurator:resource-version": 1,
-  "com.adeptj.modules.commons.email.internal.EmailServiceImpl": {
+  "com.adeptj.modules.commons.email.internal.AsyncEmailService": {
     "smtp.host": "$[prop:smtp.host;default=sandbox.smtp.mailtrap.io]",
     "smtp.port": "$[prop:smtp.port;default=587;type=Integer]",
     "default.from.address": "$[prop:from.address;default=info@adeptj.com]",

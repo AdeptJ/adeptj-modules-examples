@@ -15,7 +15,7 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
 
 @JaxRSResource(name = "PasswordEncoderResource")
 @Path("/password-encoder")
-@Component(service = CryptoResource.class)
+@Component(service = PasswordEncoderResource.class)
 public class PasswordEncoderResource {
 
     private final PasswordEncoder passwordEncoder;

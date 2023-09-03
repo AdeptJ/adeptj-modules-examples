@@ -2,7 +2,6 @@ package com.adeptj.modules.examples.jaxrs.resource;
 
 import com.adeptj.modules.commons.email.EmailInfo;
 import com.adeptj.modules.commons.email.EmailService;
-import com.adeptj.modules.commons.email.EmailType;
 import com.adeptj.modules.jaxrs.api.JaxRSResource;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.FormParam;
@@ -30,11 +29,15 @@ public class EmailResource {
     @Consumes(APPLICATION_FORM_URLENCODED)
     public String sendEmail(@FormParam("message") String message, @FormParam("toAddress") String toAddress) {
         String subject = "Test email from AdeptJ EmailService";
-        EmailInfo info = new EmailInfo(EmailType.HTML, subject, toAddress, "whoami@gmail.com");
-        info.setCcAddresses("myemail@mygmail.com", "mygmail@myemail.com");
-        info.setBccAddresses("irobot1@gmail.com", "irobot2@gmail.com");
-        info.setMessage(message);
-        this.emailService.sendEmailAsync(info);
+        EmailInfo info = EmailInfo.builder()
+                .emailType(EmailInfo.EmailType.HTML)
+                .subject(subject)
+                .addToAddresses(toAddress)
+                .addCcAddresses("myemail@mygmail.com", "mygmail@myemail.com")
+                .addBccAddresses("irobot1@gmail.com", "irobot2@gmail.com")
+                .message(message)
+                .build();
+        this.emailService.sendEmail(info);
         return "OK";
     }
 }
