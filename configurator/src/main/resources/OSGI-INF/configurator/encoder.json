@@ -1,6 +1,0 @@
-{
-  ":configurator:resource-version": 1,
-  "com.adeptj.modules.commons.crypto.internal.BCryptPasswordEncoder": {
-    "exponential.cost": 10
-  }
-}
