@@ -1,0 +1,17 @@
+{
+  ":configurator:resource-version": 1,
+  "com.adeptj.modules.restclient.apache.internal.ApacheRestClient": {
+    "skip.hostname.verification": false,
+    "disable.cookie.management": false,
+    "connect.timeout": 300000,
+    "connection.request.timeout": 60000,
+    "socket.timeout": 300000,
+    "max.idle.time": 60000,
+    "max.total": 100,
+    "idle.timeout": 60,
+    "max.per.route": 10,
+    "validate.after.inactivity": 5000,
+    "debug.request": false,
+    "mdc.req.id.attribute.name": "development"
+  }
+}

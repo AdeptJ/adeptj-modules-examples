@@ -1,0 +1,18 @@
+{
+  ":configurator:resource-version": 1,
+  "com.adeptj.modules.restclient.jetty.internal.JettyRestClient": {
+    "name": "AdeptJ Jetty HttpClient",
+    "connect.timeout": 60000,
+    "idle.timeout": 60000,
+    "max.connections.per.destination": 64,
+    "max.requests.queued.per.destination": 1024,
+    "request.buffer.size": 4096,
+    "response.buffer.size": 16384,
+    "max.redirects": 8,
+    "address.resolution.timeout": 15000,
+    "tcp.no.delay": true,
+    "follow.redirects": true,
+    "debug.request": false,
+    "mdc.req.id.attribute.name": "JETTY_HTTP_CLIENT_REQ_ID"
+  }
+}
