@@ -1,6 +1,7 @@
 package com.adeptj.modules.examples.jaxrs;
 
 import com.adeptj.modules.restclient.core.plugin.AuthorizationHeaderPlugin;
+import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
@@ -9,17 +10,17 @@ import java.util.List;
 public class TestAuthorizationHeaderPlugin implements AuthorizationHeaderPlugin {
 
     @Override
-    public String getType() {
-        return "Bearer";
+    public @NotNull AuthType getType() {
+        return AuthType.BEARER;
     }
 
     @Override
-    public String getValue() {
+    public @NotNull String getValue() {
         return "1234567890";
     }
 
     @Override
-    public List<String> getPathPatterns() {
+    public @NotNull List<String> getPathPatterns() {
         return List.of("/api/user", "/api/users/*", "/api/users");
     }
 }

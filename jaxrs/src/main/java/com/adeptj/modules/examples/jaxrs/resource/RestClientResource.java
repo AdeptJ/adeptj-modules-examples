@@ -36,9 +36,8 @@ public class RestClientResource {
     @Path("/reqres")
     @Produces(MediaType.APPLICATION_JSON)
     public ReqResData getUsersFromReqResService() {
-        ClientRequest<Void, ReqResData> request = ClientRequest.<Void, ReqResData>builder()
+        ClientRequest<?, ReqResData> request = ClientRequest.builder(ReqResData.class)
                 .uri(URI.create("https://reqres.in/api/users"))
-                .responseAs(ReqResData.class)
                 .build();
         ClientResponse<ReqResData> response = this.restClient.GET(request);
         return response.getContent();
@@ -52,9 +51,8 @@ public class RestClientResource {
         post.setTitle("Post From AdeptJ");
         post.setUserId("AdeptJ");
         post.setBody("A short body");
-        ClientRequest<Post, String> request = ClientRequest.<Post, String>builder()
+        ClientRequest<Post, String> request = ClientRequest.<Post, String>builder(String.class)
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts"))
-                .responseAs(String.class)
                 .body(post)
                 .build();
         ClientResponse<String> response = this.restClient.POST(request);
@@ -70,9 +68,8 @@ public class RestClientResource {
         post.setTitle("Updated Title - Post From AdeptJ");
         post.setUserId("Updated UserId - AdeptJ");
         post.setBody("UpdatedBody - A short body");
-        ClientRequest<Post, String> request = ClientRequest.<Post, String>builder()
+        ClientRequest<Post, String> request = ClientRequest.<Post, String>builder(String.class)
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
-                .responseAs(String.class)
                 .body(post)
                 .build();
         ClientResponse<String> response = this.restClient.PUT(request);
@@ -83,9 +80,8 @@ public class RestClientResource {
     @Path("/typicode")
     @Produces(MediaType.APPLICATION_JSON)
     public String deletePost() {
-        ClientRequest<Void, String> request = ClientRequest.<Void, String>builder()
+        ClientRequest<?, String> request = ClientRequest.builder(String.class)
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
-                .responseAs(String.class)
                 .build();
         ClientResponse<String> response = this.restClient.DELETE(request);
         return response.getContent();
@@ -95,10 +91,9 @@ public class RestClientResource {
     @Path("/typicode-execute-req")
     @Produces(MediaType.APPLICATION_JSON)
     public String deletePostByExecuteRequest() {
-        ClientRequest<Void, String> request = ClientRequest.<Void, String>builder()
+        ClientRequest<?, String> request = ClientRequest.builder(String.class)
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
                 .method(HttpMethod.DELETE)
-                .responseAs(String.class)
                 .build();
         ClientResponse<String> response = this.restClient.executeRequest(request);
         return response.getContent();
