@@ -11,7 +11,4 @@ import org.osgi.service.component.annotations.Component;
 @Component(service = {MongoUserRepository.class, MongoRepository.class})
 public class MongoUserRepository extends AbstractMongoRepository<User> {
 
-    public MongoUserRepository() {
-        super(User.class);
-    }
 }
