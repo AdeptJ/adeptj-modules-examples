@@ -24,7 +24,7 @@
     <parent>
         <groupId>com.adeptj</groupId>
         <artifactId>adeptj-modules-parent</artifactId>
-        <version>14</version>
+        <version>15</version>
         <relativePath/>
     </parent>
     <artifactId>adeptj-modules-examples-mongodb</artifactId>
@@ -147,6 +147,11 @@
         <dependency>
             <groupId>org.mongojack</groupId>
             <artifactId>mongojack</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
         </dependency>
 
     </dependencies>
