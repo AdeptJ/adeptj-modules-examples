@@ -39,7 +39,7 @@ public class RestClientResource {
         ClientRequest<?, ReqResData> request = ClientRequest.builder(ReqResData.class)
                 .uri(URI.create("https://reqres.in/api/users"))
                 .build();
-        ClientResponse<ReqResData> response = this.restClient.GET(request);
+        ClientResponse<ReqResData> response = this.restClient.get(request);
         return response.getContent();
     }
 
@@ -55,7 +55,7 @@ public class RestClientResource {
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts"))
                 .body(post)
                 .build();
-        ClientResponse<String> response = this.restClient.POST(request);
+        ClientResponse<String> response = this.restClient.post(request);
         return response.getContent();
     }
 
@@ -72,7 +72,7 @@ public class RestClientResource {
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
                 .body(post)
                 .build();
-        ClientResponse<String> response = this.restClient.PUT(request);
+        ClientResponse<String> response = this.restClient.put(request);
         return response.getContent();
     }
 
@@ -83,7 +83,7 @@ public class RestClientResource {
         ClientRequest<?, String> request = ClientRequest.builder(String.class)
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
                 .build();
-        ClientResponse<String> response = this.restClient.DELETE(request);
+        ClientResponse<String> response = this.restClient.delete(request);
         return response.getContent();
     }
 
@@ -95,7 +95,7 @@ public class RestClientResource {
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
                 .method(HttpMethod.DELETE)
                 .build();
-        ClientResponse<String> response = this.restClient.executeRequest(request);
+        ClientResponse<String> response = this.restClient.execute(request);
         return response.getContent();
     }
 }
