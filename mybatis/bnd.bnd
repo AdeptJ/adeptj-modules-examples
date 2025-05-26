@@ -27,9 +27,6 @@
 Export-Package: com.adeptj.modules.examples.mybatis, \
                 com.adeptj.modules.examples.mybatis.domain
 
-Import-Package: org.slf4j;version="[1.7,3)", \
-                *
-
 Bundle-Name: ${project.name}
 
 Bundle-Category: AdeptJ Examples

@@ -28,7 +28,6 @@ Export-Package: com.adeptj.modules.examples.jpa, \
                 com.adeptj.modules.examples.jpa.entity
 
 Import-Package: org.eclipse.persistence.indirection, \
-                org.slf4j;version="[1.7,3)", \
                 *
   
 Bundle-Name: ${project.name}
